@@ -25,6 +25,7 @@
 #include"Builder.hpp"
 #include"Log.hpp"
 #include"Comms.hpp"
+#include"Agent.hpp"
 #include"zaxlib.hpp"
 
 class Sim {
@@ -33,15 +34,14 @@ public:
     Sim(const Sim& orig);
     virtual ~Sim();
 
-    void BuildMind(int sim_id);
+    void BuildAgent(int sim_id);
 
     void RunSimulation(sptr<Comms> comms);
 
     int Time();
-    sptr<Mind> GetMind();
+    sptr<Agent> GetAgent();
 
     void SaveRNGToSeed();
-    void TurnOffAllInput();
 
     void IncrementWaitTime();
     void DecrementWaitTime();
@@ -55,17 +55,17 @@ public:
 
     template<class Archive>
     void save(Archive & ar) const {
-        ar(time,mind,seed);
+        ar(time,agent,seed);
     }
     template<class Archive>
     void load(Archive & ar) {
-        ar(time,mind,seed);
+        ar(time,agent,seed);
         rng = std::mt19937_64(seed);
         Log::Instance()->Write("SERIALIZE: Loading Sim Complete");
     }
 private:
     vec_sptr<ElectrodeGroup> recording;
-    sptr<Mind> mind;
+    sptr<Agent> agent;
     int64_t time;
     int wait_time; // in millisecs
     long seed;

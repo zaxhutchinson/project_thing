@@ -83,11 +83,11 @@ public:
     int RegionID();
     void RegionID(int id);
 
-    void Update(long time);
-    double GetInternalNoise(long time);
+    void Update(int64_t time);
+    double GetInternalNoise(int64_t time);
     void CalculateNextOutput();
     double Output(int delay);
-    double Input(long time);
+    double Input(int64_t time);
     double GetExInput();
     int NumberOfCurrentSpikes();
     int MostRecentSpike();
@@ -98,7 +98,7 @@ public:
     double Y();
     double Z();
 
-    void STDP(long time);
+    void STDP(int64_t time);
 
     void AddOutputConnection(sptr<Connection> output_conn);
     void AddInputConnection(sptr<Connection> input_conn);

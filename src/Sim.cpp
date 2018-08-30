@@ -29,12 +29,15 @@ Sim::Sim(const Sim& orig) {
 Sim::~Sim() {
 }
 
-void Sim::BuildMind(int sim_id) {
+void Sim::BuildAgent(int sim_id) {
+    agent = std::make_shared<Agent>();
+    sptr<Mind> mind = nullptr;
     switch(sim_id) {
-//        case 1:
-//            mind = Builder::Instance()->Build001(rng()); break;
+//        case 0:
+//            mind = Builder::Instance()->Build000(rng()); break;
 
     }
+    agent->AddMind(mind);
 }
 
 void Sim::RunSimulation(sptr<Comms> comms) {
@@ -46,7 +49,7 @@ void Sim::RunSimulation(sptr<Comms> comms) {
             std::this_thread::sleep_for(std::chrono::milliseconds(50));
         }
 
-        mind->Update(time);
+        agent->Update(time);
 
         RecordData();
 
@@ -60,14 +63,10 @@ void Sim::RunSimulation(sptr<Comms> comms) {
 }
 
 int Sim::Time() { return time; }
-sptr<Mind> Sim::GetMind() { return mind; }
+sptr<Mind> Sim::GetAgent() { return agent; }
 
 void Sim::SaveRNGToSeed() {
     seed = rng();
-}
-
-void Sim::TurnOffAllInput() {
-    mind->TurnOffAllInput();
 }
 
 void Sim::IncrementWaitTime() {

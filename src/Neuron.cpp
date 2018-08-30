@@ -176,7 +176,7 @@ double Neuron::X() { return x; }
 double Neuron::Y() { return y; }
 double Neuron::Z() { return z; }
 
-void Neuron::Update(long time) {
+void Neuron::Update(int64_t time) {
 
     v[cur_index] = (v[pre_index] +
             (k * (v[pre_index]-vr) * (v[pre_index]-vt) -
@@ -208,7 +208,7 @@ void Neuron::Update(long time) {
     cur_index = (cur_index+1)%data_size;
 }
 
-double Neuron::GetInternalNoise(long time) {
+double Neuron::GetInternalNoise(int64_t time) {
     std::uniform_real_distribution<double> dist(-noise,noise);
     return dist(rng);
 }
@@ -224,7 +224,7 @@ double Neuron::Output(int delay) {
     return alpha_output[((alpha_index-delay)+alpha_index_mod)%alpha_index_mod];
 }
 
-double Neuron::Input(long time) {
+double Neuron::Input(int64_t time) {
     double in = 0.0;
     for(int i = 0; i < input.size(); i++) {
         in += (input[i]->Output(time));
@@ -255,7 +255,7 @@ double Neuron::TotalSpikeAge() {
 
 bool Neuron::Spiked() { return spiked; }
 
-void Neuron::STDP(long time) {
+void Neuron::STDP(int64_t time) {
     for(vec_sptr<Connection>::iterator it = input.begin();
             it != input.end(); it++) {
         (*it)->RunPostPlasticity(time);

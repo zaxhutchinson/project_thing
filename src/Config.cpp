@@ -41,6 +41,7 @@ namespace config {
     double FAST_POTENTIATION_MOD;
     double MEDIUM_POTENTIATION_MOD;
     double SLOW_POTENTIATION_MOD;
+    double DELTA_TRACE_DECAY;
     // map
     int NUM_THING_DETAILS;
 
@@ -78,6 +79,7 @@ bool config::LoadConfig(std::string filename) {
     FAST_POTENTIATION_MOD = reader.GetReal("synapse","fast_potentiation_mod",2.0);
     MEDIUM_POTENTIATION_MOD = reader.GetReal("synapse","medium_potentiation_mod",2.0);
     SLOW_POTENTIATION_MOD = reader.GetReal("synapse","slow_potentiation_mod",2.0);
+    DELTA_TRACE_DECAY = reader.GetReal("synapse","delta_trace_decay",0.001);
 
     NUM_THING_DETAILS = reader.GetReal("map","num_thing_details",16);
 }

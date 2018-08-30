@@ -23,16 +23,18 @@ Connection::Connection() {
 
 }
 
-Connection::Connection(double weight, double strength, bool learn,
+Connection::Connection(double weight, double strength, double min_strength,
+        bool learn, bool pot,
         sptr<Neuron> pre, sptr<Neuron> post, PlasticityType p_type,
-        int delay) {
+        int delay, sptr<Dopamine> dopamine) {
     this->weight = weight;
     this->strength = strength;
-    this->min_strength = -strength;
+    this->min_strength = min_strength;
     this->fast_potentiation = 0.0;
     this->medium_potentiation = 0.0;
     this->slow_potentiation = 0.0;
     this->learn = learn;
+    this->pot = pot;
     this->pre = pre;
     this->post = post;
     this->p_type = p_type;
@@ -40,6 +42,7 @@ Connection::Connection(double weight, double strength, bool learn,
     this->last_post_spike = -1;
     this->last_potentiation_time = -1;
     this->delay = delay;
+    this->dopamine = dopamine;
 
     SetPlasticity();
 }
@@ -69,113 +72,142 @@ void Connection::SetPlasticity() {
     }
 }
 
-void Connection::PreSTANDARD_E(long time) {
+void Connection::PreSTANDARD_E(int64_t time) {
     last_pre_spike = time;
-    if(learn && last_post_spike>-1) {
+    if(last_post_spike>-1) {
         double diff = static_cast<double>(last_pre_spike-last_post_spike);
-        double delta = 0.0;
 
-        if(diff<30.0) {
-            delta = -0.1 * std::exp(-diff/30.0);
-            if(last_potentiation_time>0) {
-                fast_potentiation = std::exp(-config::FAST_POTENTIATION_DECAY*
-                        (time-last_potentiation_time));
-                medium_potentiation = std::exp(-config::MEDIUM_POTENTIATION_DECAY*
-                        (time-last_potentiation_time));
-                slow_potentiation = std::exp(-config::SLOW_POTENTIATION_DECAY*
-                        (time-last_potentiation_time));
+        if(pot) {
+            if(diff<30.0) {
+                if(last_potentiation_time>0) {
+                    fast_potentiation = std::exp(-config::FAST_POTENTIATION_DECAY*
+                            (time-last_potentiation_time));
+                    medium_potentiation = std::exp(-config::MEDIUM_POTENTIATION_DECAY*
+                            (time-last_potentiation_time));
+                    slow_potentiation = std::exp(-config::SLOW_POTENTIATION_DECAY*
+                            (time-last_potentiation_time));
+                }
             }
         }
-        strength+=delta;
-        if(strength<min_strength) strength=min_strength;
+
+        if(learn) {
+            double delta = 0.0;
+            if(diff<30.0) {
+                delta = -0.1 * std::exp(-diff/30.0);
+            }
+            delta_trace+=delta;
+        }
     }
 }
 
-void Connection::PostSTANDARD_E(long time) {
+void Connection::PostSTANDARD_E(int64_t time) {
     last_post_spike = time;
-    if(learn && last_pre_spike>-1) {
+    if(last_pre_spike>-1) {
         double diff = static_cast<double>(last_post_spike-last_pre_spike);
-        double delta = 0.0;
-        if(diff<30.0) {
-            delta = 0.1 * std::exp(-diff/30.0);
-            last_potentiation_time = time;
-            fast_potentiation=medium_potentiation=slow_potentiation=1.0;
-        }
-        else {
-            if(last_potentiation_time>0) {
-                fast_potentiation = std::exp(-config::FAST_POTENTIATION_DECAY*
-                        (time-last_potentiation_time));
-                medium_potentiation = std::exp(-config::MEDIUM_POTENTIATION_DECAY*
-                        (time-last_potentiation_time));
-                slow_potentiation = std::exp(-config::SLOW_POTENTIATION_DECAY*
-                        (time-last_potentiation_time));
+        if(pot) {
+            if(diff<30.0) {
+                last_potentiation_time = time;
+                fast_potentiation=medium_potentiation=slow_potentiation=1.0;
+            }
+            else {
+                if(last_potentiation_time>0) {
+                    fast_potentiation = std::exp(-config::FAST_POTENTIATION_DECAY*
+                            (time-last_potentiation_time));
+                    medium_potentiation = std::exp(-config::MEDIUM_POTENTIATION_DECAY*
+                            (time-last_potentiation_time));
+                    slow_potentiation = std::exp(-config::SLOW_POTENTIATION_DECAY*
+                            (time-last_potentiation_time));
+                }
             }
         }
-        strength+=delta;
-        if(strength<min_strength) strength=min_strength;
+        if(learn) {
+            double delta = 0.0;
+            if(diff<30.0) {
+                delta = 0.1 * std::exp(-diff/30.0);
+            }
+            delta_trace+=delta;
+        }
     }
 }
 
 
-void Connection::PreZAX_2018_I(long time) {
+void Connection::PreZAX_2018_I(int64_t time) {
     last_pre_spike = time;
-    if(learn && last_post_spike>-1) {
+    if(last_post_spike>-1) {
         double diff = static_cast<double>(last_pre_spike-last_post_spike);
-        double delta = 0.0;
-        if(diff<20.0) {
-            delta = 0.1 * std::exp(-diff/20.0);
-        }
-        else if(diff<100.0) {
-            delta = -0.025 * std::exp(-diff/100.0);
-            if(last_potentiation_time>0) {
-                fast_potentiation = std::exp(-config::FAST_POTENTIATION_DECAY*
-                        (time-last_potentiation_time));
-                medium_potentiation = std::exp(-config::MEDIUM_POTENTIATION_DECAY*
-                        (time-last_potentiation_time));
-                slow_potentiation = std::exp(-config::SLOW_POTENTIATION_DECAY*
-                        (time-last_potentiation_time));
+        if(pot) {
+            if(diff<20.0) {
+                last_potentiation_time = time;
+                fast_potentiation=medium_potentiation=slow_potentiation=1.0;
+            }
+            else if(diff<100.0) {
+                if(last_potentiation_time>0) {
+                    fast_potentiation = std::exp(-config::FAST_POTENTIATION_DECAY*
+                            (time-last_potentiation_time));
+                    medium_potentiation = std::exp(-config::MEDIUM_POTENTIATION_DECAY*
+                            (time-last_potentiation_time));
+                    slow_potentiation = std::exp(-config::SLOW_POTENTIATION_DECAY*
+                            (time-last_potentiation_time));
+                }
             }
         }
-        strength+=delta;
-        if(strength<min_strength) strength=min_strength;
+        if(learn) {
+            double delta = 0.0;
+            if(diff<20.0) {
+                delta = 0.1 * std::exp(-diff/20.0);
+            }
+            else if(diff<100.0) {
+                delta = -0.025 * std::exp(-diff/100.0);
+            }
+            delta_trace+=delta;
+        }
     }
 }
 
-void Connection::PostZAX_2018_I(long time) {
+void Connection::PostZAX_2018_I(int64_t time) {
     last_post_spike=time;
-    if(learn && last_pre_spike>-1) {
+    if(last_pre_spike>-1) {
         double diff = static_cast<double>(last_post_spike-last_pre_spike);
-        double delta=0.0;
-        if(diff<20.0) {
-            delta = 0.1 * std::exp(-diff/20.0);
-            last_potentiation_time = time;
-            fast_potentiation=medium_potentiation=slow_potentiation=1.0;
-        }
-        else if(diff<100.0) {
-            delta = -0.025 * std::exp(-diff/100.0);
-            if(last_potentiation_time>0) {
-                fast_potentiation = std::exp(-config::FAST_POTENTIATION_DECAY*
-                        (time-last_potentiation_time));
-                medium_potentiation = std::exp(-config::MEDIUM_POTENTIATION_DECAY*
-                        (time-last_potentiation_time));
-                slow_potentiation = std::exp(-config::SLOW_POTENTIATION_DECAY*
-                        (time-last_potentiation_time));
+        if(pot) {
+            if(diff<20.0) {
+                last_potentiation_time = time;
+                fast_potentiation=medium_potentiation=slow_potentiation=1.0;
+            }
+            else if(diff<100.0) {
+                if(last_potentiation_time>0) {
+                    fast_potentiation = std::exp(-config::FAST_POTENTIATION_DECAY*
+                            (time-last_potentiation_time));
+                    medium_potentiation = std::exp(-config::MEDIUM_POTENTIATION_DECAY*
+                            (time-last_potentiation_time));
+                    slow_potentiation = std::exp(-config::SLOW_POTENTIATION_DECAY*
+                            (time-last_potentiation_time));
+                }
             }
         }
-        strength+=delta;
-        if(strength<min_strength) strength=min_strength;
+        if(learn) {
+            double delta=0.0;
+            if(diff<20.0) {
+                delta = 0.1 * std::exp(-diff/20.0);
+                
+            }
+            else if(diff<100.0) {
+                delta = -0.025 * std::exp(-diff/100.0);
+            }
+            delta_trace+=delta;
+        }
     }
+    
 }
 
-void Connection::RunPrePlasticity(long time) {
+void Connection::RunPrePlasticity(int64_t time) {
     pre_plasticity(time);
 }
-void Connection::RunPostPlasticity(long time) {
+void Connection::RunPostPlasticity(int64_t time) {
     post_plasticity(time);
 }
 
 
-double Connection::Output(long time) {
+double Connection::Output(int64_t time) {
 
     double preout = pre.lock()->Output(delay);
 
@@ -194,6 +226,15 @@ double Connection::Output(long time) {
 
 void Connection::SetLearn(bool learn) {
     this->learn = learn;
+}
+void Connection::SetPot(bool pot) {
+    this->pot = pot;
+}
+void Connection::Learn() {
+    if(learn) {
+        strength+=(delta_trace*dopamine->GetStrength());
+        if(strength<min_strength) strength=min_strength;
+    }
 }
 
 double Connection::Strength() { return strength; }

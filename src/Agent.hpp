@@ -9,7 +9,7 @@
 #include"Mind.hpp"
 #include"ExInput.hpp"
 #include"Thing.hpp"
-#include"Sound.hpp"
+#include"Electrode.hpp"
 
 class Agent {
 public:
@@ -19,14 +19,22 @@ public:
     void AddMind(sptr<Mind> mind);
     void AddEye(sptr<ExInput> ex_input);
     void AddEar(sptr<ExInput> ex_input);
+    void AddMouth(sptr<Electrode> electrode);
     /////////////////////////////////////////////////////////////////////////
     int GetX();
     int GetY();
     void SetX(int x);
     void SetY(int y);
+    sptr<Mind> GetMind();
     /////////////////////////////////////////////////////////////////////////
     void VisualInput(sptr<Thing> thing);
-    void AuralInput(sptr<Sound> sound);
+    void AuralInput(sptr<Thing> thing);
+    /////////////////////////////////////////////////////////////////////////
+    void PrepareResponse(int64_t time, int64_t time_to_think);
+    void ConsiderResponse();
+    sptr<Thing> GetResponse();
+    /////////////////////////////////////////////////////////////////////////
+    void Update(int64_t time);
     /////////////////////////////////////////////////////////////////////////
     template<class Archive>
     void save(Archive & ar) const {
@@ -43,6 +51,11 @@ private:
     sptr<Mind> mind;
     vec_sptr<ExInput> eyes;
     vec_sptr<ExInput> ears;
+    vec_sptr<Electrode> mouths;
+
+    int64_t response_end_time;
+    bool prepare_response;
+    sptr<Thing> response;
 };
 
 #endif

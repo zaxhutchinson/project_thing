@@ -26,6 +26,7 @@
 #include"ExInput.hpp"
 #include"Electrode.hpp"
 #include"SynapseRecorder.hpp"
+#include"Dopamine.hpp"
 
 class Mind {
 public:
@@ -38,6 +39,7 @@ public:
     void AddElectrodeGroup(sptr<ElectrodeGroup> group);
     void AddElectrode(sptr<Electrode> electrode, int group);
     void AddSynapseRecorder(sptr<SynapseRecorder> rec);
+    void AddDopamineChannel(sptr<Dopamine> dopamine);
 
     const vec<vec_sptr<Neuron>> & GetRegions();
     vec_sptr<Neuron> & GetRegion(int region);
@@ -53,8 +55,10 @@ public:
     vec_sptr<ExInput> & GetInputs();
     //vec_wptr<ExInput> & GetOutputs();
     sptr<Connection> GetConnection(int index);
+    vec_sptr<Dopamine> & GetDopamineChannels();
+    sptr<Dopamine> GetDopamineChannel(int index);
 
-    void Update(long time);
+    void Update(int64_t time);
     void Learn();
     void CleanUp();
 
@@ -86,6 +90,7 @@ private:
     vec_sptr<ExInput> input;
     vec_sptr<ElectrodeGroup> electrode_groups;
     vec_sptr<SynapseRecorder> syn_recorders;
+    vec_sptr<Dopamine> dopamine_channels;
 };
 
 #endif /* MIND_HPP */

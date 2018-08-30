@@ -44,12 +44,15 @@ int main(int argc, char** argv) {
 
     config::LoadConfig("config/config.ini");
 
-    if(argc>1) {
-        for(int i = 0; i < argc; i++) {
-            if(strcmp(argv[i],"-b")==0) {
-                int build = std::stoi(argv[i+1]);
-                return BatchRun(build);
-            }
+    int build = 0;
+    int iterations = 1;
+
+    for(int i = 0; i < argc; i++) {
+        if(strcmp(argv[i],"-b")==0) {
+            build = std::stoi(argv[i+1]);
+        }
+        if(strcmp(argv[i],"-i")==0) {
+            iterations = std::stoi(argv[i+1]);
         }
     }
 

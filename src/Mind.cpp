@@ -42,7 +42,9 @@ void Mind::AddElectrode(sptr<Electrode> electrode, int group) {
 void Mind::AddSynapseRecorder(sptr<SynapseRecorder> rec) {
     syn_recorders.push_back(rec);
 }
-
+void Mind::AddDopamineChannel(sptr<Dopamine> dopamine) {
+    dopamine_channels.push_back(dopamine);
+}
 int Mind::GetNumberOfRegions() {
     return regions.size();
 }
@@ -84,7 +86,13 @@ vec_sptr<ExInput> & Mind::GetInputs() {
 sptr<Connection> Mind::GetConnection(int index) {
     return conns[index];
 }
-void Mind::Update(long time) {
+vec_sptr<Dopamine> & Mind::GetDopamineChannels() {
+    return dopamine_channels;
+}
+sptr<Dopamine> Mind::GetDopamineChannel(int index) {
+    return dopamine_channels[index];
+}
+void Mind::Update(int64_t time) {
     for(int i = 0; i < regions.size(); i++) {
         #pragma omp parallel for
         for(int k = 0; k < regions[i].size(); k++) {
@@ -93,6 +101,12 @@ void Mind::Update(long time) {
     }
     for(int i = 0; i < syn_recorders.size(); i++) {
         syn_recorders[i]->Update(time);
+    }
+    #pragma omp parallel for
+    for(vec_sptr<Connection>::iterator it = conns.begin();
+            it != conns.end(); it++) {
+
+        (*it)->Learn();
     }
 }
 void Mind::Learn() {

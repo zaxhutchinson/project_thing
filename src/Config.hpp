@@ -50,6 +50,7 @@ namespace config {
     extern double FAST_POTENTIATION_MOD;
     extern double MEDIUM_POTENTIATION_MOD;
     extern double SLOW_POTENTIATION_MOD;
+    extern double DELTA_TRACE_DECAY;
 
     // MAP
     extern int NUM_THING_DETAILS;

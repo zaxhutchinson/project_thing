@@ -30,6 +30,7 @@
 #include"zaxlib.hpp"
 #include"NeuronTemplate.hpp"
 #include"Config.hpp"
+#include"Dopamine.hpp"
 
 class Neuron;
 
@@ -51,9 +52,10 @@ public:
     static double ZETA_DECAY;
 
     Connection();
-    Connection(double weight, double strength, bool learn,
+    Connection(double weight, double strength, double min_strength, 
+        bool learn, bool pot,
         sptr<Neuron> pre, sptr<Neuron> post, PlasticityType p_type,
-        int delay);
+        int delay, sptr<Dopamine> dopamine);
     Connection(const Connection& orig);
     virtual ~Connection();
 
@@ -64,17 +66,19 @@ public:
 
     void SetPlasticity();
 
-    void PreSTANDARD_E(long time);
-    void PostSTANDARD_E(long time);
-    void PreZAX_2018_I(long time);
-    void PostZAX_2018_I(long time);
+    void PreSTANDARD_E(int64_t time);
+    void PostSTANDARD_E(int64_t time);
+    void PreZAX_2018_I(int64_t time);
+    void PostZAX_2018_I(int64_t time);
 
-    void RunPrePlasticity(long time);
-    void RunPostPlasticity(long time);
+    void RunPrePlasticity(int64_t time);
+    void RunPostPlasticity(int64_t time);
 
-    double Output(long time);
+    double Output(int64_t time);
 
     void SetLearn(bool learn);
+    void SetPot(bool pot);
+    void Learn();
 
     double Strength();
     double FastPotentiation();
@@ -106,8 +110,10 @@ private:
     wptr<Neuron> pre;
     wptr<Neuron> post;
 
-    long last_post_spike;
-    long last_pre_spike;
+    sptr<Dopamine> dopamine;
+
+    int64_t last_post_spike;
+    int64_t last_pre_spike;
 
     PlasticityType p_type;
 
@@ -127,6 +133,9 @@ private:
     std::list<double> post_activity_history;
 
     bool learn;
+    bool pot;
+
+    double delta_trace;
 };
 
 #endif /* CONNECTION_HPP */
