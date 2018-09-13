@@ -27,6 +27,7 @@
 #include"Comms.hpp"
 #include"Agent.hpp"
 #include"zaxlib.hpp"
+#include"TestManager.hpp"
 
 class Sim {
 public:
@@ -40,6 +41,9 @@ public:
 
     int Time();
     sptr<Agent> GetAgent();
+
+    void SetSession(sptr<Session> session);
+    sptr<Session> GetSession();
 
     void SaveRNGToSeed();
 
@@ -55,17 +59,18 @@ public:
 
     template<class Archive>
     void save(Archive & ar) const {
-        ar(time,agent,seed);
+        ar(agent,seed);
     }
     template<class Archive>
     void load(Archive & ar) {
-        ar(time,agent,seed);
+        ar(agent,seed);
         rng = std::mt19937_64(seed);
         Log::Instance()->Write("SERIALIZE: Loading Sim Complete");
     }
 private:
     vec_sptr<ElectrodeGroup> recording;
     sptr<Agent> agent;
+    sptr<Session> session;
     int64_t time;
     int wait_time; // in millisecs
     long seed;

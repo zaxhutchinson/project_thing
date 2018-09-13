@@ -59,7 +59,11 @@ public:
     sptr<Dopamine> GetDopamineChannel(int index);
 
     void Update(int64_t time);
-    void Learn();
+    void StartLearning();
+    void EndLearning();
+    void ReleaseDopamine(int dopamine_channel, double strength);
+    void PurgeDopamine(int dopamine_channel);
+
     void CleanUp();
 
     std::string GetTopology();

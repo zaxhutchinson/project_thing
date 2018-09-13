@@ -33,7 +33,7 @@ Connection::Connection(double weight, double strength, double min_strength,
     this->fast_potentiation = 0.0;
     this->medium_potentiation = 0.0;
     this->slow_potentiation = 0.0;
-    this->learn = learn;
+    this->can_learn = learn;
     this->pot = pot;
     this->pre = pre;
     this->post = post;
@@ -43,6 +43,8 @@ Connection::Connection(double weight, double strength, double min_strength,
     this->last_potentiation_time = -1;
     this->delay = delay;
     this->dopamine = dopamine;
+
+    this->learning=false;
 
     SetPlasticity();
 }
@@ -90,7 +92,7 @@ void Connection::PreSTANDARD_E(int64_t time) {
             }
         }
 
-        if(learn) {
+        if(learning) {
             double delta = 0.0;
             if(diff<30.0) {
                 delta = -0.1 * std::exp(-diff/30.0);
@@ -120,7 +122,7 @@ void Connection::PostSTANDARD_E(int64_t time) {
                 }
             }
         }
-        if(learn) {
+        if(learning) {
             double delta = 0.0;
             if(diff<30.0) {
                 delta = 0.1 * std::exp(-diff/30.0);
@@ -151,7 +153,7 @@ void Connection::PreZAX_2018_I(int64_t time) {
                 }
             }
         }
-        if(learn) {
+        if(learning) {
             double delta = 0.0;
             if(diff<20.0) {
                 delta = 0.1 * std::exp(-diff/20.0);
@@ -184,7 +186,7 @@ void Connection::PostZAX_2018_I(int64_t time) {
                 }
             }
         }
-        if(learn) {
+        if(learning) {
             double delta=0.0;
             if(diff<20.0) {
                 delta = 0.1 * std::exp(-diff/20.0);
@@ -223,17 +225,22 @@ double Connection::Output(int64_t time) {
                 ((weight*strength) / (std::abs(weight)+std::abs(strength)));
     }
 }
-
-void Connection::SetLearn(bool learn) {
-    this->learn = learn;
+void Connection::SetCanLearn(bool learn) {
+    this->can_learn = learn;
+}
+void Connection::SetLearning(bool learn) {
+    if(can_learn) {
+        this->learning = learn;
+    }
 }
 void Connection::SetPot(bool pot) {
     this->pot = pot;
 }
 void Connection::Learn() {
-    if(learn) {
+    if(can_learn) {
         strength+=(delta_trace*dopamine->GetStrength());
         if(strength<min_strength) strength=min_strength;
+        delta_trace=0.0;
     }
 }
 

@@ -76,7 +76,8 @@ public:
 
     double Output(int64_t time);
 
-    void SetLearn(bool learn);
+    void SetCanLearn(bool learn);
+    void SetLearning(bool learn);
     void SetPot(bool pot);
     void Learn();
 
@@ -93,16 +94,16 @@ public:
     void save(Archive & ar) const {
         ar(pre,post,strength,weight,fast_potentiation,
                 medium_potentiation, slow_potentiation,
-                learn,post_activity_history,
+                can_learn,pot,post_activity_history,
                 p_type,delay,last_pre_spike,last_post_spike);
     }
     template<class Archive>
     void load(Archive & ar) {
         ar(pre,post,strength,weight,fast_potentiation,
                 medium_potentiation, slow_potentiation,
-                learn,post_activity_history,
+                can_learn,pot,post_activity_history,
                 p_type,delay,last_pre_spike,last_post_spike);
-
+        learning=false;
     }
 
 
@@ -132,7 +133,8 @@ private:
 
     std::list<double> post_activity_history;
 
-    bool learn;
+    bool can_learn;
+    bool learning;
     bool pot;
 
     double delta_trace;

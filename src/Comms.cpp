@@ -10,6 +10,7 @@ Comms::Comms() {
     quit_sim = false;
     quit_display = false;
     pause_sim = true;
+    test_done = false;
 }
 Comms::Comms(const Comms& orig) {
 }

@@ -30,6 +30,259 @@ Builder::Builder(const Builder& orig) {
 
 Builder::~Builder() {
 }
+
+sptr<Mind> Builder::BuildMind000(long seed) {
+    Log::Instance()->Write("BUILDER: Build Mind 000");
+
+    // Mind obj
+    sptr<Mind> mind = std::make_shared<Mind>();
+
+    // Set up rng and dice.
+    rng.seed(seed);
+    std::uniform_real_distribution<double> dice(0.0,1.0);
+    std::uniform_int_distribution<int> delay(1,5);
+    int datasize = config::DATASIZE;
+    //////////////////////////////////////////////////////////////
+    // Configuration
+    int size_input              = 4;
+    int size_output             = 4;
+    int neurons_per_input       = 10;
+    //int neurons_per_output      = 10;
+
+    double input_w              = 200.0;
+
+    int size_pfc_pc             = 200;
+    int size_pfc_in             = 35;
+    int size_pfc_ii             = 5;
+
+    double pfc_pc_pc_cp         = 0.2;
+    double pfc_pc_pc_w          = 20.0;
+    double pfc_pc_in_cp         = 0.5;
+    double pfc_pc_in_w          = 20.0;
+    double pfc_in_pc_cp         = 0.5;
+    double pfc_in_pc_w          = -20.0;
+    double pfc_pc_ii_cp         = 0.5;
+    double pfc_pc_ii_w          = 20.0;
+    double pfc_ii_in_cp         = 0.5;
+    double pfc_ii_in_w          = -20.0;
+
+    double max_conn_dist        = 50.0;
+
+    vec_sptr<Neuron> pfc_pc;
+    vec_sptr<Neuron> pfc_in;
+    vec_sptr<Neuron> pfc_ii;
+
+    PlasticityType e_type = PlasticityType::STANDARD_E;
+    PlasticityType i_type = PlasticityType::ZAX_2018_I;
+
+    //////////////////////////////////////////////////////////////
+    // Neurons
+    for(int i = 0; i < size_pfc_pc; i++) {
+        pfc_pc.push_back(std::make_shared<Neuron>(
+            NeuronTemplate::Instance()->GetNT(NeuronType::RegularSpiking),
+            rng(), 0, datasize,
+            "PFC_PC("+std::to_string(i)+")"
+        ));
+    }
+    for(int i = 0; i < size_pfc_in; i++) {
+        pfc_in.push_back(std::make_shared<Neuron>(
+            NeuronTemplate::Instance()->GetNT(NeuronType::FastSpiking),
+            rng(), 1, datasize,
+            "PFC_IN("+std::to_string(i)+")"
+        ));
+    }
+    for(int i = 0; i < size_pfc_ii; i++) {
+        pfc_ii.push_back(std::make_shared<Neuron>(
+            NeuronTemplate::Instance()->GetNT(NeuronType::FastSpiking),
+            rng(), 2, datasize,
+            "PFC_II("+std::to_string(i)+")"
+        ));
+    }
+    //////////////////////////////////////////////////////////////
+    // Connections
+
+    sptr<Dopamine> da = std::make_shared<Dopamine>();
+    mind->AddDopamineChannel(da);
+
+    for(int i = 0; i < size_pfc_pc; i++) {
+        for(int k = 0; k < size_pfc_pc; k++) {
+            if(i==k) continue; // no self connections
+            sptr<Neuron> pre = pfc_pc[i];
+            sptr<Neuron> post = pfc_pc[k];
+            if(Neuron::Distance(pre,post)<max_conn_dist) {
+                if(pfc_pc_pc_cp<dice(rng)) {
+                    
+                    sptr<Connection> conn = std::make_shared<Connection>(
+                        pfc_pc_pc_w, std::abs(pfc_pc_pc_w), -std::abs(pfc_pc_pc_w),
+                        true, true,
+                        pre, post, e_type, Neuron::Distance(pre,post)/10.0,
+                        da
+                    );
+                    pre->AddOutputConnection(conn);
+                    post->AddInputConnection(conn);
+                    mind->AddConnection(conn);
+                } else {
+                    sptr<Connection> conn = std::make_shared<Connection>(
+                        pfc_pc_pc_w, 0.0, -std::abs(pfc_pc_pc_w),
+                        true, true,
+                        pre, post, e_type, Neuron::Distance(pre,post)/10.0,
+                        da
+                    );
+                    pre->AddOutputConnection(conn);
+                    post->AddInputConnection(conn);
+                    mind->AddConnection(conn);
+                }
+            }
+        }
+    }
+    for(int i = 0; i < size_pfc_pc; i++) {
+        for(int k = 0; k < size_pfc_in; k++) {
+            sptr<Neuron> pre = pfc_pc[i];
+            sptr<Neuron> post = pfc_in[k];
+            if(Neuron::Distance(pre,post)<max_conn_dist) {
+                if(pfc_pc_in_cp<dice(rng)) {
+                    sptr<Connection> conn = std::make_shared<Connection>(
+                        pfc_pc_in_w, std::abs(pfc_pc_in_w), -std::abs(pfc_pc_in_w),
+                        true, false,
+                        pre, post, e_type, Neuron::Distance(pre,post)/10.0,
+                        da
+                    );
+                    pre->AddOutputConnection(conn);
+                    post->AddInputConnection(conn);
+                    mind->AddConnection(conn);
+                } else {
+                    sptr<Connection> conn = std::make_shared<Connection>(
+                        pfc_pc_in_w, 0.0, -std::abs(pfc_pc_in_w),
+                        true, false,
+                        pre, post, e_type, Neuron::Distance(pre,post)/10.0,
+                        da
+                    );
+                    pre->AddOutputConnection(conn);
+                    post->AddInputConnection(conn);
+                    mind->AddConnection(conn);
+                }
+            }
+        }
+    }
+    for(int i = 0; i < size_pfc_in; i++) {
+        for(int k = 0; k < size_pfc_pc; k++) {
+            sptr<Neuron> pre = pfc_in[i];
+            sptr<Neuron> post = pfc_pc[k];
+            if(Neuron::Distance(pre,post)<max_conn_dist) {
+                if(pfc_in_pc_cp<dice(rng)) {
+                    sptr<Connection> conn = std::make_shared<Connection>(
+                        pfc_in_pc_w, std::abs(pfc_in_pc_w), -std::abs(pfc_in_pc_w),
+                        true, false,
+                        pre, post, i_type, Neuron::Distance(pre,post)/10.0,
+                        da
+                    );
+                    pre->AddOutputConnection(conn);
+                    post->AddInputConnection(conn);
+                    mind->AddConnection(conn);
+                } else {
+                    sptr<Connection> conn = std::make_shared<Connection>(
+                        pfc_in_pc_w, 0.0, -std::abs(pfc_in_pc_w),
+                        true, false,
+                        pre, post, i_type, Neuron::Distance(pre,post)/10.0,
+                        da
+                    );
+                    pre->AddOutputConnection(conn);
+                    post->AddInputConnection(conn);
+                    mind->AddConnection(conn);
+                }
+            }
+        }
+    }
+    for(int i = 0; i < size_pfc_pc; i++) {
+        for(int k = 0; k < size_pfc_ii; k++) {
+            sptr<Neuron> pre = pfc_pc[i];
+            sptr<Neuron> post = pfc_ii[k];
+            if(Neuron::Distance(pre,post)<max_conn_dist) {
+                if(pfc_pc_ii_cp<dice(rng)) {
+                    sptr<Connection> conn = std::make_shared<Connection>(
+                        pfc_pc_ii_w, std::abs(pfc_pc_ii_w), -std::abs(pfc_pc_ii_w),
+                        true, false,
+                        pre, post, e_type, Neuron::Distance(pre,post)/10.0,
+                        da
+                    );
+                    pre->AddOutputConnection(conn);
+                    post->AddInputConnection(conn);
+                    mind->AddConnection(conn);
+                } else {
+                    sptr<Connection> conn = std::make_shared<Connection>(
+                        pfc_pc_ii_w, 0.0, -std::abs(pfc_pc_ii_w),
+                        true, false,
+                        pre, post, e_type, Neuron::Distance(pre,post)/10.0,
+                        da
+                    );
+                    pre->AddOutputConnection(conn);
+                    post->AddInputConnection(conn);
+                    mind->AddConnection(conn);
+                }
+            }
+        }
+    }
+    for(int i = 0; i < size_pfc_ii; i++) {
+        for(int k = 0; k < size_pfc_in; k++) {
+            sptr<Neuron> pre = pfc_ii[i];
+            sptr<Neuron> post = pfc_in[k];
+            if(Neuron::Distance(pre,post)<max_conn_dist) {
+                if(pfc_ii_in_cp<dice(rng)) {
+                    sptr<Connection> conn = std::make_shared<Connection>(
+                        pfc_ii_in_w, std::abs(pfc_ii_in_w), -std::abs(pfc_ii_in_w),
+                        true, false,
+                        pre, post, i_type, Neuron::Distance(pre,post)/10.0,
+                        da
+                    );
+                    pre->AddOutputConnection(conn);
+                    post->AddInputConnection(conn);
+                    mind->AddConnection(conn);
+                } else {
+                    sptr<Connection> conn = std::make_shared<Connection>(
+                        pfc_ii_in_w, 0.0, -std::abs(pfc_ii_in_w),
+                        true, false,
+                        pre, post, i_type, Neuron::Distance(pre,post)/10.0,
+                        da
+                    );
+                    pre->AddOutputConnection(conn);
+                    post->AddInputConnection(conn);
+                    mind->AddConnection(conn);
+                }
+            }
+        }
+    }
+
+    //////////////////////////////////////////////////////////////
+    // External Input
+    int k = 0;
+    for(int i = 0; i < size_input; i++) {
+        sptr<ExInput> exin = std::make_shared<ExInput>(input_w);
+        for(int j = 0; j < neurons_per_input; j++, k++) {
+            sptr<Neuron> neuron = pfc_pc[k];
+            neuron->AddExInputConnection(exin);
+        }
+        mind->AddExInput(exin);
+    }
+
+    // IF more EGs are added, make sure that the Mouth intended output
+    // is the first one added to the mind. These electrodes will be
+    // referenced as parts of the mouth.
+    sptr<ElectrodeGroup> egout = std::make_shared<ElectrodeGroup>("OUTPUT");
+    for(int i = 0; i < size_output; i++, k++) {
+        sptr<Neuron> neuron = pfc_pc[k];
+        sptr<Electrode> electrode = std::make_shared<Electrode>("OUT(" + std::to_string(i)+")");
+        electrode->SetElectrode(neuron);
+        egout->electrodes.push_back(electrode);
+    }
+    mind->AddElectrodeGroup(egout);
+
+    mind->AddRegion(pfc_pc);
+    mind->AddRegion(pfc_in);
+    mind->AddRegion(pfc_ii);
+    //////////////////////////////////////////////////////////////
+    // END return mind
+    return mind;
+}
 /*
 sptr<Mind> Builder::Build011(long seed) {
     Log::Instance()->Write("BUILDER: Started - build 011");

@@ -1,0 +1,14 @@
+<root>
+    <testdef>
+        <id>0</id>
+        <qname>thing0</qname>
+        <aname>thing0</aname>
+        <sstart>2000</sstart>
+        <sduration>999</sduration>
+        <rstart>3000</rstart>
+        <rduration>999</rduration>
+        <fstart>3000</fstart>
+        <fduration>1</fduration>
+        <etime>4000</etime>
+    </testdef>
+</root>

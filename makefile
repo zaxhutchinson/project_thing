@@ -2,7 +2,7 @@
 ### CUSTOMIZE BELOW HERE #######################################################
 
 CC=g++ # define the compiler to use
-TARGET=project_huddle # define the name of the executable
+TARGET=project_thing # define the name of the executable
 CFLAGS= -c -std=c++14 -O3 -g
 LFLAGS= -lm -lsfml-graphics -lsfml-window -lsfml-system -pthread -fopenmp
 SRCDIR = src

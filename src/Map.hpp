@@ -11,7 +11,9 @@ public:
     Map();
     Map(int width, int height);
     //////////////////////////////////////////////////////////////////////////
-    void BuildGenericMap(std::mt19937_64 & rng, double detail_min, double detail_max);
+    void BuildGenericMap(std::mt19937_64 & rng, 
+                    double detail_min, 
+                    double detail_max);
     //////////////////////////////////////////////////////////////////////////
     int GetMapWidth();
     int GetMapHeight();

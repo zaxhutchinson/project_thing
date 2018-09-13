@@ -27,12 +27,21 @@ public:
     void SetY(int y);
     sptr<Mind> GetMind();
     /////////////////////////////////////////////////////////////////////////
-    void VisualInput(sptr<Thing> thing);
-    void AuralInput(sptr<Thing> thing);
+    void StartLearning();
+    void EndLearning();
+    void StartFeedback(int input_channel, double off_by);
+    void EndFeedback(int input_channel);
+    /////////////////////////////////////////////////////////////////////////
+    void GiveVisualInput(sptr<Thing> thing);
+    void GiveAuralInput(sptr<Thing> thing);
+    void PurgeVisualInput();
+    void PurgeAuralInput();
+    void PurgeAllInput();
     /////////////////////////////////////////////////////////////////////////
     void PrepareResponse(int64_t time, int64_t time_to_think);
     void ConsiderResponse();
-    sptr<Thing> GetResponse();
+    sptr<Thing> GetRawResponse();
+    sptr<Thing> GetNormalizedResponse();
     /////////////////////////////////////////////////////////////////////////
     void Update(int64_t time);
     /////////////////////////////////////////////////////////////////////////

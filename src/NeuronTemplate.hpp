@@ -24,7 +24,8 @@ enum NeuronType {
     Relay,
     FastSpiking,
     FastSpikingTAN,
-    ReticularThalamicNucleus
+    ReticularThalamicNucleus,
+    IntrinsicBursting
 };
 
 struct NT {

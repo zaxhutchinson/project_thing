@@ -31,7 +31,7 @@ public:
     Builder(const Builder& orig);
     virtual ~Builder();
 
-//    sptr<Mind> Build001(long seed);
+    sptr<Mind> BuildMind000(long seed);
 
 
 

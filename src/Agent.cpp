@@ -35,22 +35,51 @@ sptr<Mind> Agent::GetMind() { return mind; }
 /////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
-void Agent::VisualInput(sptr<Thing> thing) {
+void Agent::StartLearning() {
+    mind->StartLearning();
+}
+void Agent::EndLearning() {
+    mind->EndLearning();
+}
+void Agent::StartFeedback(int input_channel, double off_by) {
+    mind->ReleaseDopamine(input_channel, off_by);
+}
+void Agent::EndFeedback(int input_channel) {
+    mind->PurgeDopamine(input_channel);
+}
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+void Agent::GiveVisualInput(sptr<Thing> thing) {
     for(int i = 0; i < config::NUM_THING_DETAILS; i++) {
         eyes[i]->Strength(thing->GetDetail(i));
     }
 }
-void Agent::AuralInput(sptr<Thing> thing) {
+void Agent::GiveAuralInput(sptr<Thing> thing) {
     for(int i = 0; i < config::NUM_THING_DETAILS; i++) {
         ears[i]->Strength(thing->GetDetail(i));
     }
+}
+void Agent::PurgeVisualInput() {
+    for(int i = 0; i < config::NUM_THING_DETAILS; i++) {
+        eyes[i]->Strength(0.0);
+    }
+}
+void Agent::PurgeAuralInput() {
+    for(int i = 0; i < config::NUM_THING_DETAILS; i++) {
+        ears[i]->Strength(0.0);
+    }
+}
+void Agent::PurgeAllInput() {
+    PurgeVisualInput();
+    PurgeAuralInput();
 }
 /////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
 void Agent::PrepareResponse(int64_t time, int64_t time_to_think) {
     prepare_response=true;
-    response = std::make_shared<Thing>(config::NUM_THING_DETAILS);
+    response = std::make_shared<Thing>("response",mouths.size());
     response_end_time = time+time_to_think;
 }
 void Agent::ConsiderResponse() {
@@ -62,11 +91,11 @@ void Agent::ConsiderResponse() {
         }
     }
 }
-sptr<Thing> Agent::GetResponse() {
-    if(response != nullptr) {
-        response->NormalizeDetail();
-    }
+sptr<Thing> Agent::GetRawResponse() {
     return response;
+}
+sptr<Thing> Agent::GetNormalizedResponse() {
+    return response->NormalizeDetail();
 }
 /////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////

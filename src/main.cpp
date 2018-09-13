@@ -29,6 +29,7 @@
 #include"Log.hpp"
 #include"Serializer.hpp"
 #include"ResourceLoader.hpp"
+#include"ThingManager.hpp"
 
 #include"Comms.hpp"
 #include"ResourceLoader.hpp"
@@ -36,7 +37,10 @@
 using namespace std;
 
 void CheckStackSize();
-int BatchRun(int build);
+sptr<Sim> LoadSim(std::string name);
+sptr<Sim> BuildSim(int model);
+sptr<Session> LoadSession(int session_id);
+int BatchRun(sptr<Sim> sim, int iteration);
 
 int main(int argc, char** argv) {
 
@@ -44,17 +48,72 @@ int main(int argc, char** argv) {
 
     config::LoadConfig("config/config.ini");
 
-    int build = 0;
+    ThingManager::Instance()->LoadThings(config::THING_FILE);
+    TestManager::Instance()->LoadFiles();
+
+    
     int iterations = 1;
+    bool load_model=false;
+    std::string save_name;
+    std::string load_name;
+    int build = 0;
+    int session_id=-1;
 
     for(int i = 0; i < argc; i++) {
-        if(strcmp(argv[i],"-b")==0) {
-            build = std::stoi(argv[i+1]);
-        }
         if(strcmp(argv[i],"-i")==0) {
             iterations = std::stoi(argv[i+1]);
         }
+        if(strcmp(argv[i],"-n")==0) {
+            save_name = std::string(argv[i+1]);
+            build = std::stoi(argv[i+2]);
+        }
+        if(strcmp(argv[i],"-l")==0) {
+            load_model=true;
+            load_name = std::string(argv[i+1]);
+            if(save_name.empty()) {
+                save_name = load_name;
+            }
+        }
+        if(strcmp(argv[i],"-s")==0) {
+            save_name = std::string(argv[i+1]);
+        }
+        if(strcmp(argv[i],"-t")==0) {
+            session_id = std::stoi(argv[i+1]);
+        }
     }
+
+    sptr<Sim> sim = nullptr;
+    if(load_model) {
+        sim = LoadSim(load_name);
+    } else {
+        sim = BuildSim(build);
+    }
+
+    sptr<Session> session = nullptr;
+    if(session_id!=-1) {
+        session = LoadSession(session_id);
+    }
+
+    // Make sure we're good
+    if(sim==nullptr) {
+        Log::Instance()->Write("MAIN: Sim null");
+        return 1;
+    }
+    if(session==nullptr) {
+        Log::Instance()->Write("MAIN: Session null.");
+        return 1;
+    }
+
+    Log::Instance()->Write(sim->GetAgent()->GetMind()->GetTopology());
+
+    // Set the session and run.
+    sim->SetSession(session);
+    for(int i = 0; i < iterations; i++) {
+        int rtn = BatchRun(sim, i);
+    }
+
+    // Save and done
+    Serializer::Instance()->SaveComms(sim,save_name);
 
     Log::Instance()->Write("MAIN: All done");
 
@@ -81,57 +140,80 @@ void CheckStackSize() {
     }
 }
 
-int BatchRun(int build) {
-
-    std::string dir = config::RECDIR;
-
-    // Begin logging the time.
-    struct timespec start, finish;
-    double elapsed;
-    clock_gettime(CLOCK_MONOTONIC, &start);
-
-    config::RECDIR=dir;
-    const int err=mkdir(config::RECDIR.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
-    if(err==-1) {
-        std::cout << "Error creating dir: " << config::RECDIR << std::endl;
-        return 1;
-    }
-
-    sptr<Comms> comms = std::make_shared<Comms>();
-
-    std::thread t_sim;
-
+sptr<Sim> LoadSim(std::string name) {
+    sptr<Sim> sim = nullptr;
+    Serializer::Instance()->LoadComms(sim,name);
+    return sim;
+}
+sptr<Sim> BuildSim(int model) {
     sptr<Sim> sim = std::make_shared<Sim>();
-    sim->BuildMind(build);
+    sim->BuildAgent(model);
+    return sim;
+}
+sptr<Session> LoadSession(int session_id) {
+    return TestManager::Instance()->CreateSession(session_id);
+}
 
-    for(int i = 0; i < sim->GetMind()->GetNumberOfElectrodeGroups(); i++) {
-        sptr<ElectrodeGroup> eg = sim->GetMind()->GetElectrodeGroup(i);
-        sim->AddRecordingElectrodeGroup(eg);
-    }
+int BatchRun(sptr<Sim> sim, int iteration) {
 
-    sim->StartAllRecordingElectrodes();
+    int test_counter = 0;
 
-    comms->pause_sim=false;
+    sptr<Session> session = sim->GetSession();
 
-    t_sim = std::thread(&Sim::RunSimulation, sim, comms);
+    while(!session->SessionDone()) {
 
-    while(!comms->quit_sim) {
-        if(true) {
-            comms->pause_sim=true;
-            sim->StopAllRecordingElectrodes();
-            sim->GetMind()->CleanUp();
-            comms->quit_sim=true;
+        std::string dir = config::RECDIR +
+                "/" + std::to_string(iteration) +
+                "/" + session->name +
+                "/" + std::to_string(test_counter);
+
+
+        const int err=mkdir(dir.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+        if(err==-1) {
+            std::cout << "Error creating dir: " << config::RECDIR << std::endl;
+            return 1;
         }
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
+        sptr<Comms> comms = std::make_shared<Comms>();
+
+        std::thread t_sim;
+
+        for(int i = 0; i < sim->GetAgent()->GetMind()->GetNumberOfElectrodeGroups(); i++) {
+            sptr<ElectrodeGroup> eg = sim->GetAgent()->GetMind()->GetElectrodeGroup(i);
+            sim->AddRecordingElectrodeGroup(eg);
+        }
+
+        sim->StartAllRecordingElectrodes();
+
+        comms->pause_sim=false;
+
+        // Begin logging the time.
+        struct timespec start, finish;
+        double elapsed;
+        clock_gettime(CLOCK_MONOTONIC, &start);
+
+        t_sim = std::thread(&Sim::RunSimulation, sim, comms);
+
+        while(!comms->quit_sim) {
+            if(comms->test_done) {
+                comms->pause_sim=true;
+                sim->StopAllRecordingElectrodes();
+                sim->GetAgent()->GetMind()->CleanUp();
+                comms->quit_sim=true;
+            }
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+        }
+        if(t_sim.joinable()) t_sim.join();
+
+        clock_gettime(CLOCK_MONOTONIC, &finish);
+
+        elapsed = (finish.tv_sec - start.tv_sec);
+        elapsed += (finish.tv_nsec - start.tv_nsec) / 1000000000.0;
+
+        Log::Instance()->Write("  Time: " + std::to_string(elapsed));
+
+        test_counter++;
     }
-    if(t_sim.joinable()) t_sim.join();
-
-    clock_gettime(CLOCK_MONOTONIC, &finish);
-
-    elapsed = (finish.tv_sec - start.tv_sec);
-    elapsed += (finish.tv_nsec - start.tv_nsec) / 1000000000.0;
-
-    Log::Instance()->Write("  Time: " + std::to_string(elapsed));
 
 }

@@ -1,0 +1,7 @@
+<root>
+    <sessiondef>
+        <id>0</id>
+        <sname>t1</sname>
+        <testdefid iterations="10">0</testdefid>
+    </sessiondef>
+</root>

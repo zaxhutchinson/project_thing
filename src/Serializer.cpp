@@ -34,8 +34,7 @@ Serializer::~Serializer() {
 
 void Serializer::SaveComms(sptr<Sim> & sim, std::string name) {
     sim->SaveRNGToSeed();
-    sim->TurnOffAllInput(); // System assumes all exinput are off at start.
-    sim->GetMind()->SaveNeuronRNGToSeed(); // Save individual RNGs
+    sim->GetAgent()->GetMind()->SaveNeuronRNGToSeed(); // Save individual RNGs
     std::ofstream out(name, std::ios::binary | std::ios::out);
     cereal::BinaryOutputArchive oarchive(out);
     oarchive(sim);

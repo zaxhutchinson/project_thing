@@ -109,10 +109,23 @@ void Mind::Update(int64_t time) {
         (*it)->Learn();
     }
 }
-void Mind::Learn() {
+void Mind::StartLearning() {
     for(int i = 0; i < conns.size(); i++) {
-        //conns[i]->RunPlasticity();
+        conns[i]->SetLearning(true);
     }
+}
+void Mind::EndLearning() {
+    for(int i = 0; i < conns.size(); i++) {
+        conns[i]->SetLearning(false);
+    }
+}
+void Mind::ReleaseDopamine(int dopamine_channel, double strength) {
+    sptr<Dopamine> da = GetDopamineChannel(dopamine_channel);
+    da->SetStrength(strength);
+}
+void Mind::PurgeDopamine(int dopamine_channel) {
+    sptr<Dopamine> da = GetDopamineChannel(dopamine_channel);
+    da->SetStrength(0.0);
 }
 
 void Mind::CleanUp() {
@@ -129,6 +142,7 @@ std::string Mind::GetTopology() {
         str += "    [" + std::to_string(i) + "] " + std::to_string(regions[i].size()) +
                 " neurons\n";
     }
+    str += " CONNECTIONS: " + std::to_string(conns.size()) + "\n";
 
 
     return str;

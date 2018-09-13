@@ -21,6 +21,7 @@ Sim::Sim() {
 
     time = 0;
     wait_time = 0;
+    session=nullptr;
 }
 
 Sim::Sim(const Sim& orig) {
@@ -31,20 +32,37 @@ Sim::~Sim() {
 
 void Sim::BuildAgent(int sim_id) {
     agent = std::make_shared<Agent>();
+    
+    // Build and Add Mind
     sptr<Mind> mind = nullptr;
     switch(sim_id) {
-//        case 0:
-//            mind = Builder::Instance()->Build000(rng()); break;
+        case 0:
+            mind = Builder::Instance()->BuildMind000(rng()); break;
 
     }
     agent->AddMind(mind);
+
+    // Electrode Group in slot 0 should always be the mouth.
+    // Add the mind's electrodes in eg to agent as mouth.
+    // Hacky code.
+    sptr<ElectrodeGroup> eg = mind->GetElectrodeGroup(0);
+    for(vec_sptr<Electrode>::iterator it = eg->electrodes.begin();
+            it != eg->electrodes.end(); it++) {
+        agent->AddMouth(*it);
+    }
+
 }
 
 void Sim::RunSimulation(sptr<Comms> comms) {
 
+    time=0;
+
     Log::Instance()->Write("MAIN: Starting main loop");
 
-    while(!comms->quit_sim) {
+    sptr<Thing> response = nullptr;
+    double off_by = 0.0;
+
+    while(!comms->test_done) {
         while(comms->pause_sim && !comms->quit_sim) {
             std::this_thread::sleep_for(std::chrono::milliseconds(50));
         }
@@ -52,6 +70,23 @@ void Sim::RunSimulation(sptr<Comms> comms) {
         agent->Update(time);
 
         RecordData();
+
+        if(session->StartStimulus(time)) {
+            agent->GiveVisualInput(session->GetCurrentStimulus());
+        } else if(session->EndStimulus(time)) {
+            agent->PurgeAllInput();
+        } else if(session->StartResponse(time)) {
+            agent->PrepareResponse(time,session->ResponseDuration());
+        } else if(session->EndResponse(time)) {
+            response = agent->GetNormalizedResponse();
+            off_by = Thing::AbsDiff(response,session->GetCurrentFeedback());
+        } else if(session->StartFeedback(time)) {
+            agent->StartFeedback(0,off_by);
+        } else if(session->EndFeedback(time)) {
+            agent->EndFeedback(0);
+        } else if(session->EndTest(time)) {
+            comms->test_done=true;
+        }
 
         time++;
         if(wait_time>0) {
@@ -63,8 +98,14 @@ void Sim::RunSimulation(sptr<Comms> comms) {
 }
 
 int Sim::Time() { return time; }
-sptr<Mind> Sim::GetAgent() { return agent; }
+sptr<Agent> Sim::GetAgent() { return agent; }
 
+void Sim::SetSession(sptr<Session> session) {
+    this->session = session;
+}
+sptr<Session> Sim::GetSession() {
+    return this->session;
+}
 void Sim::SaveRNGToSeed() {
     seed = rng();
 }

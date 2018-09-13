@@ -8,12 +8,20 @@
 class Thing {
 public:
     Thing();
-    Thing(int num_details);
+    Thing(std::string name);
+    Thing(std::string name, int num_details);
+    std::string GetName();
+    int NumDetails();
     double GetDetail(int index);
     void SetDetail(int index, double amount);
     void AddDetail(int index, double amount);
-    void NormalizeDetail();
+    void CreateDetail(double amount);
+    sptr<Thing> NormalizeDetail();
+    static double AbsDiff(sptr<Thing> t1, sptr<Thing> t2);
+    std::string ToString();
 private:
+    std::string name;
+    int num_details;
     vec<double> details;
 };
 

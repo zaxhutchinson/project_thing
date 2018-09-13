@@ -33,6 +33,9 @@ namespace config {
     extern std::string LOG_FNAME_RUN;
     extern std::string RECDIR;
     extern double ALPHA_BASE;
+    extern std::string THING_FILE;
+    extern std::string TEST_FILE;
+    extern std::string SESSION_FILE;
 
     // BRAIN
     extern int CORE_X;

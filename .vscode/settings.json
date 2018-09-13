@@ -51,6 +51,10 @@
         "typeindex": "cpp",
         "typeinfo": "cpp",
         "utility": "cpp",
-        "cstdarg": "cpp"
+        "cstdarg": "cpp",
+        "optional": "cpp",
+        "string_view": "cpp",
+        "string": "cpp",
+        "algorithm": "cpp"
     }
 }

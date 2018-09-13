@@ -113,6 +113,20 @@ NeuronTemplate::NeuronTemplate() {
     rtn->NOISE = 0.0;//100.0;//500.0;
     rtn->BETA = 0.0;
     neuron_templates[NeuronType::ReticularThalamicNucleus] = std::move(rtn);
+
+    std::unique_ptr<NT> ib = std::make_unique<NT>();
+    ib->CAP = 150.0;
+    ib->VR = -75.0;
+    ib->VT = -45.0;
+    ib->K = 1.2;
+    ib->VPEAK = 50.0;
+    ib->A = 0.01;
+    ib->B = 5.0;
+    ib->C = -56.0;
+    ib->D = 130.0;
+    ib->NOISE = 100.0;
+    ib->BETA = 0.0;
+    neuron_templates[NeuronType::IntrinsicBursting] = std::move(ib);
 }
 
 NT * NeuronTemplate::GetNT(NeuronType type) {

@@ -25,6 +25,9 @@ namespace config {
     std::string LOG_FNAME_RUN;
     std::string RECDIR;
     double ALPHA_BASE;
+    std::string THING_FILE;
+    std::string TEST_FILE;
+    std::string SESSION_FILE;
 
     int NUMBER_CORE_NEURONS;
     int CORE_X;
@@ -64,6 +67,9 @@ bool config::LoadConfig(std::string filename) {
     LOG_FNAME_RUN = reader.Get("general","log_fname_run","run.log");
     RECDIR = reader.Get("general","recdir","recordings");
     ALPHA_BASE = reader.GetReal("general","alpha_base",20.0);
+    THING_FILE = reader.Get("general","thing_file","thing_defs.xml");
+    TEST_FILE = reader.Get("general","test_file","test_defs.xml");
+    SESSION_FILE = reader.Get("general","session_file","session_defs.xml");
 
     NUMBER_CORE_NEURONS = reader.GetInteger("brain","number_core_neurons",1);
     CORE_X = reader.GetInteger("brain", "core_x",1000);

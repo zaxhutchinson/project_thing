@@ -24,6 +24,7 @@ struct Comms {
     bool quit_sim;
     bool quit_display;
     bool pause_sim;
+    bool test_done;
 
     Comms();
     Comms(const Comms & orig);
