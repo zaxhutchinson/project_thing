@@ -26,6 +26,7 @@
 #include"cereal/archives/binary.hpp"
 #include"cereal/types/memory.hpp"
 #include"cereal/types/list.hpp"
+#include"cereal/types/functional.hpp"
 
 #include"zaxlib.hpp"
 #include"NeuronTemplate.hpp"
@@ -95,15 +96,18 @@ public:
         ar(pre,post,strength,weight,fast_potentiation,
                 medium_potentiation, slow_potentiation,
                 can_learn,pot,post_activity_history,
-                p_type,delay,last_pre_spike,last_post_spike);
+                p_type,delay,last_pre_spike,last_post_spike,
+                dopamine);
     }
     template<class Archive>
     void load(Archive & ar) {
         ar(pre,post,strength,weight,fast_potentiation,
                 medium_potentiation, slow_potentiation,
                 can_learn,pot,post_activity_history,
-                p_type,delay,last_pre_spike,last_post_spike);
+                p_type,delay,last_pre_spike,last_post_spike,
+                dopamine);
         learning=false;
+        SetPlasticity();
     }
 
 

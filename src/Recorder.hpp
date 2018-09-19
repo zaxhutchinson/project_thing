@@ -40,6 +40,7 @@ enum class RecordType {
 class Recorder {
 public:
     Recorder();
+    Recorder(std::string path);
     Recorder(const Recorder& orig);
     virtual ~Recorder();
     

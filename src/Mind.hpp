@@ -15,6 +15,7 @@
 #define MIND_HPP
 
 #include<string>
+#include<algorithm>
 
 #include"cereal/archives/binary.hpp"
 #include"cereal/types/memory.hpp"
@@ -58,7 +59,7 @@ public:
     vec_sptr<Dopamine> & GetDopamineChannels();
     sptr<Dopamine> GetDopamineChannel(int index);
 
-    void Update(int64_t time);
+    void Update(int64_t time, std::mt19937_64 & rng);
     void StartLearning();
     void EndLearning();
     void ReleaseDopamine(int dopamine_channel, double strength);
@@ -73,18 +74,18 @@ public:
 
     template<class Archive>
     void save(Archive & ar) const {
-        ar(regions,conns,input,electrode_groups);
+        ar(all_neurons,conns,input,electrode_groups,dopamine_channels);
     }
     template<class Archive>
     void load(Archive & ar) {
-        ar(regions,conns,input,electrode_groups);
-        for(vec<vec_sptr<Neuron>>::iterator rit = regions.begin();
+        ar(all_neurons,conns,input,electrode_groups,dopamine_channels);
+        /* for(vec<vec_sptr<Neuron>>::iterator rit = regions.begin();
                 rit != regions.end(); rit++) {
             for(vec_sptr<Neuron>::iterator nit = rit->begin();
                     nit != rit->end(); nit++) {
                 all_neurons.push_back(*nit);
             }
-        }
+        } */
     }
 
 private:

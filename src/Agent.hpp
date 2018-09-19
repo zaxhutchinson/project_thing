@@ -43,7 +43,7 @@ public:
     sptr<Thing> GetRawResponse();
     sptr<Thing> GetNormalizedResponse();
     /////////////////////////////////////////////////////////////////////////
-    void Update(int64_t time);
+    void Update(int64_t time, std::mt19937_64 & rng);
     /////////////////////////////////////////////////////////////////////////
     template<class Archive>
     void save(Archive & ar) const {

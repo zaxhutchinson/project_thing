@@ -18,14 +18,22 @@
 
 Recorder::Recorder() {
     this->path = config::RECDIR + "/";
+    this->run = false;   
+}
+Recorder::Recorder(std::string path) {
+    this->path = path;
     this->run = false;
-    
 }
 
 Recorder::Recorder(const Recorder& orig) {
+    this->path = orig.path;
+    this->run = orig.run;
 }
 
 Recorder::~Recorder() {
+    if(t_write.joinable()) {
+        t_write.join();
+    }
 }
 
 void Recorder::AddNeuronData(uptr<NeuronData> data) {
@@ -54,7 +62,7 @@ void Recorder::ClearUpRecording() {
         uptr<NeuronData> data = std::move(data_to_write.front());
         data_to_write.pop();
         
-        std::string fname(this->path + data->filename);
+        std::string fname(this->path +"/"+ data->filename);
         std::ofstream of(fname,std::ios::binary|std::ios::out|std::ios::app);
 
         
@@ -76,7 +84,7 @@ void Recorder::WriteThread() {
             data_to_write.pop();
             qlock.unlock();
             
-            std::string fname(this->path + data->filename);
+            std::string fname(this->path +"/"+ data->filename);
             std::ofstream of(fname,std::ios::binary|std::ios::out|std::ios::app);
             for(unsigned int i = 0; i < data->spikes.size(); i++) {
                 of.write(reinterpret_cast<char*>(&data->spikes[i]), sizeof(int64_t));

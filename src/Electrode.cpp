@@ -93,12 +93,12 @@ sptr<Electrode> ElectrodeGroup::GetElectrode(int index) {
     else return nullptr;
 }
 
-void ElectrodeGroup::MakeRecorder() {
-    recorder = std::make_shared<Recorder>();
+void ElectrodeGroup::MakeRecorder(std::string path) {
+    recorder = std::make_shared<Recorder>(path);
 }
 
-void ElectrodeGroup::StartRecording() {
-    MakeRecorder();
+void ElectrodeGroup::StartRecording(std::string path) {
+    MakeRecorder(path);
     recorder->StartRecording();
     for(vec_sptr<Electrode>::iterator it = electrodes.begin();
             it != electrodes.end(); it++) {

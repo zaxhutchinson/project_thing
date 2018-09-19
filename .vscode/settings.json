@@ -55,6 +55,8 @@
         "optional": "cpp",
         "string_view": "cpp",
         "string": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "bitset": "cpp",
+        "valarray": "cpp"
     }
 }

@@ -51,6 +51,12 @@ void Sim::BuildAgent(int sim_id) {
         agent->AddMouth(*it);
     }
 
+    vec_sptr<ExInput> & exins = mind->GetInputs();
+    for(vec_sptr<ExInput>::iterator it = exins.begin();
+            it != exins.end(); it++) {
+        agent->AddEye(*it);
+    }
+
 }
 
 void Sim::RunSimulation(sptr<Comms> comms) {
@@ -61,13 +67,14 @@ void Sim::RunSimulation(sptr<Comms> comms) {
 
     sptr<Thing> response = nullptr;
     double off_by = 0.0;
-
+    
     while(!comms->test_done) {
+        
         while(comms->pause_sim && !comms->quit_sim) {
             std::this_thread::sleep_for(std::chrono::milliseconds(50));
         }
 
-        agent->Update(time);
+        agent->Update(time, rng);
 
         RecordData();
 
@@ -94,6 +101,9 @@ void Sim::RunSimulation(sptr<Comms> comms) {
         }
         if(time%1000==0) Log::Instance()->Write("Time: "+std::to_string(time));
     }
+    
+    
+    session->RemoveCurrentTest();
     Log::Instance()->Write("MAIN: Main loop done");
 }
 
@@ -133,10 +143,10 @@ void Sim::AddRecordingElectrodeGroup(sptr<ElectrodeGroup> eg) {
     recording.push_back(eg);
 }
 
-void Sim::StartAllRecordingElectrodes() {
+void Sim::StartAllRecordingElectrodes(std::string path) {
     for(vec_sptr<ElectrodeGroup>::iterator it = recording.begin();
             it != recording.end(); it++) {
-        (*it)->StartRecording();
+        (*it)->StartRecording(path);
     }
 }
 

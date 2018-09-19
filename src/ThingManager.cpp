@@ -34,6 +34,7 @@ void ThingManager::LoadThings(std::string filename) {
             } catch(std::invalid_argument e) {
                 Log::Instance()->Write("THINGMANAGER: Invalid detail " + std::string(edetail->GetText()));
             }
+            edetail = edetail->NextSiblingElement("detail");
         }
 
         things.push_back(t);

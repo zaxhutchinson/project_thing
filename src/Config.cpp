@@ -24,6 +24,7 @@ namespace config {
     std::string LOG_FNAME_DEBUG;
     std::string LOG_FNAME_RUN;
     std::string RECDIR;
+    std::string MODELDIR;
     double ALPHA_BASE;
     std::string THING_FILE;
     std::string TEST_FILE;
@@ -66,6 +67,7 @@ bool config::LoadConfig(std::string filename) {
     LOG_FNAME_DEBUG = reader.Get("general","log_fname_debug","debug.log");
     LOG_FNAME_RUN = reader.Get("general","log_fname_run","run.log");
     RECDIR = reader.Get("general","recdir","recordings");
+    MODELDIR = reader.Get("general","modeldir","models");
     ALPHA_BASE = reader.GetReal("general","alpha_base",20.0);
     THING_FILE = reader.Get("general","thing_file","thing_defs.xml");
     TEST_FILE = reader.Get("general","test_file","test_defs.xml");
@@ -87,7 +89,7 @@ bool config::LoadConfig(std::string filename) {
     SLOW_POTENTIATION_MOD = reader.GetReal("synapse","slow_potentiation_mod",2.0);
     DELTA_TRACE_DECAY = reader.GetReal("synapse","delta_trace_decay",0.001);
 
-    NUM_THING_DETAILS = reader.GetReal("map","num_thing_details",16);
+
 }
 
 void config::PrintConfig() {

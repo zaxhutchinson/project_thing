@@ -6,6 +6,7 @@
 #include<fstream>
 #include<string>
 #include<sstream>
+#include<iostream>
 
 #include"tinyxml2.h"
 

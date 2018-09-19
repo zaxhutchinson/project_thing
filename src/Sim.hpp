@@ -54,7 +54,7 @@ public:
     void RecordData();
     void AddRecordingElectrodeGroup(sptr<ElectrodeGroup> eg);
     void StopAllRecordingElectrodes();
-    void StartAllRecordingElectrodes();
+    void StartAllRecordingElectrodes(std::string path);
     void ClearAllRecordingElectrodes();
 
     template<class Archive>

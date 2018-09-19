@@ -175,7 +175,7 @@ void TestManager::LoadSessionDefs() {
                 etd = etd->NextSiblingElement("testdefid")) {
 
             int testdefid = std::stoi(etd->GetText());
-            int iters=1;
+            int iters=0;
             if(etd->QueryIntAttribute("iterations",&iters)==tinyxml2::XML_SUCCESS) {
                 for(int i=0; i < iters; i++) {
                     sd->test_def_ids.push_back(testdefid);

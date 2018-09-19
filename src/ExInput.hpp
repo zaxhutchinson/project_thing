@@ -16,6 +16,7 @@
 
 #include<string>
 #include<vector>
+#include<iostream>
 
 #include"cereal/archives/binary.hpp"
 

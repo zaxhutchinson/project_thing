@@ -1,0 +1,84 @@
+PROJECT THING: Started
+THING MANAGER: Things loaded
+TEST MANAGER: Tests loaded
+CMD LINE ARGS:
+  New: test 0
+  SessionID: 0
+BUILDER: Build Mind 000
+  REGIONS: 3
+    [0] 200 neurons
+    [1] 35 neurons
+    [2] 5 neurons
+ CONNECTIONS: 7991
+
+MAIN: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+MAIN: Main loop done
+  Time: 0.605239
+MAIN: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+MAIN: Main loop done
+  Time: 0.605037
+MAIN: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+MAIN: Main loop done
+  Time: 0.605641
+MAIN: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+MAIN: Main loop done
+  Time: 0.605244
+MAIN: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+MAIN: Main loop done
+  Time: 0.605146
+MAIN: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+MAIN: Main loop done
+  Time: 0.604906
+MAIN: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+MAIN: Main loop done
+  Time: 0.604805
+MAIN: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+MAIN: Main loop done
+  Time: 0.707028
+MAIN: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+MAIN: Main loop done
+  Time: 0.707248
+MAIN: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+MAIN: Main loop done
+  Time: 0.605370
+MAIN: All done

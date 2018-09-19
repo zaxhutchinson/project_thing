@@ -77,8 +77,8 @@ struct ElectrodeGroup {
     unsigned int GetNumberOfElectrodes();
     sptr<Electrode> GetElectrode(int index);
     
-    void MakeRecorder();
-    void StartRecording();
+    void MakeRecorder(std::string path);
+    void StartRecording(std::string path);
     void StopRecording();
     void RecordData(int64_t time);
 
@@ -89,7 +89,6 @@ struct ElectrodeGroup {
     template<class Archive>
     void load(Archive & ar) {
         ar(name,electrodes);
-        MakeRecorder();
     }
 };
 

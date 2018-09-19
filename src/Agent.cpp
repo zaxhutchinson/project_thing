@@ -51,22 +51,22 @@ void Agent::EndFeedback(int input_channel) {
 /////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
 void Agent::GiveVisualInput(sptr<Thing> thing) {
-    for(int i = 0; i < config::NUM_THING_DETAILS; i++) {
+    for(int i = 0; i < eyes.size(); i++) {
         eyes[i]->Strength(thing->GetDetail(i));
     }
 }
 void Agent::GiveAuralInput(sptr<Thing> thing) {
-    for(int i = 0; i < config::NUM_THING_DETAILS; i++) {
+    for(int i = 0; i < ears.size(); i++) {
         ears[i]->Strength(thing->GetDetail(i));
     }
 }
 void Agent::PurgeVisualInput() {
-    for(int i = 0; i < config::NUM_THING_DETAILS; i++) {
+    for(int i = 0; i < eyes.size(); i++) {
         eyes[i]->Strength(0.0);
     }
 }
 void Agent::PurgeAuralInput() {
-    for(int i = 0; i < config::NUM_THING_DETAILS; i++) {
+    for(int i = 0; i < ears.size(); i++) {
         ears[i]->Strength(0.0);
     }
 }
@@ -74,6 +74,7 @@ void Agent::PurgeAllInput() {
     PurgeVisualInput();
     PurgeAuralInput();
 }
+
 /////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
@@ -100,9 +101,9 @@ sptr<Thing> Agent::GetNormalizedResponse() {
 /////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
-void Agent::Update(int64_t time) {
+void Agent::Update(int64_t time, std::mt19937_64 & rng) {
 
-    mind->Update(time);
+    mind->Update(time, rng);
 
     if(prepare_response) {
         if(time < response_end_time) {

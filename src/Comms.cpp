@@ -11,6 +11,7 @@ Comms::Comms() {
     quit_display = false;
     pause_sim = true;
     test_done = false;
+    recdir = "";
 }
 Comms::Comms(const Comms& orig) {
 }

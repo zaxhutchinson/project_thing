@@ -92,12 +92,13 @@ vec_sptr<Dopamine> & Mind::GetDopamineChannels() {
 sptr<Dopamine> Mind::GetDopamineChannel(int index) {
     return dopamine_channels[index];
 }
-void Mind::Update(int64_t time) {
-    for(int i = 0; i < regions.size(); i++) {
-        #pragma omp parallel for
-        for(int k = 0; k < regions[i].size(); k++) {
-            regions[i][k]->Update(time);
-        }
+void Mind::Update(int64_t time, std::mt19937_64 & rng) {
+
+    std::shuffle(all_neurons.begin(), all_neurons.end(), rng);
+
+    #pragma omp parallel for
+    for(int k = 0; k < all_neurons.size(); k++) {
+        all_neurons[k]->Update(time);
     }
     for(int i = 0; i < syn_recorders.size(); i++) {
         syn_recorders[i]->Update(time);

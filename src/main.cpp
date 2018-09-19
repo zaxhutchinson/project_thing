@@ -40,32 +40,31 @@ void CheckStackSize();
 sptr<Sim> LoadSim(std::string name);
 sptr<Sim> BuildSim(int model);
 sptr<Session> LoadSession(int session_id);
-int BatchRun(sptr<Sim> sim, int iteration);
+int BatchRun(sptr<Sim> sim, std::string session_dir);
 
 int main(int argc, char** argv) {
-
     CheckStackSize();
-
     config::LoadConfig("config/config.ini");
 
-    ThingManager::Instance()->LoadThings(config::THING_FILE);
-    TestManager::Instance()->LoadFiles();
+    Log::Instance()->Write("PROJECT THING: Started");
 
+    ThingManager::Instance()->LoadThings(config::THING_FILE);
+    Log::Instance()->Write("THING MANAGER: Things loaded");
+    TestManager::Instance()->LoadFiles();
+    Log::Instance()->Write("TEST MANAGER: Tests loaded");
     
-    int iterations = 1;
     bool load_model=false;
     std::string save_name;
     std::string load_name;
     int build = 0;
     int session_id=-1;
 
+    Log::Instance()->Write("CMD LINE ARGS:");
     for(int i = 0; i < argc; i++) {
-        if(strcmp(argv[i],"-i")==0) {
-            iterations = std::stoi(argv[i+1]);
-        }
         if(strcmp(argv[i],"-n")==0) {
             save_name = std::string(argv[i+1]);
             build = std::stoi(argv[i+2]);
+            Log::Instance()->Write("  New: "+std::string(argv[i+1])+" "+std::string(argv[i+2]));
         }
         if(strcmp(argv[i],"-l")==0) {
             load_model=true;
@@ -73,18 +72,21 @@ int main(int argc, char** argv) {
             if(save_name.empty()) {
                 save_name = load_name;
             }
+            Log::Instance()->Write("  Load: "+std::string(argv[i+1]));
         }
         if(strcmp(argv[i],"-s")==0) {
             save_name = std::string(argv[i+1]);
+            Log::Instance()->Write("  Save: "+std::string(argv[i+1]));
         }
         if(strcmp(argv[i],"-t")==0) {
             session_id = std::stoi(argv[i+1]);
+            Log::Instance()->Write("  SessionID: "+std::string(argv[i+1]));
         }
     }
-
+    
     sptr<Sim> sim = nullptr;
     if(load_model) {
-        sim = LoadSim(load_name);
+        sim = LoadSim(config::MODELDIR+load_name);
     } else {
         sim = BuildSim(build);
     }
@@ -105,15 +107,27 @@ int main(int argc, char** argv) {
     }
 
     Log::Instance()->Write(sim->GetAgent()->GetMind()->GetTopology());
-
-    // Set the session and run.
+    
+    // Set the session.
     sim->SetSession(session);
-    for(int i = 0; i < iterations; i++) {
-        int rtn = BatchRun(sim, i);
+
+    // Create session directory
+    std::string dir = config::RECDIR + "/" +session->name;
+    int err=mkdir(dir.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+    if(err==-1) {
+        std::cout << "Error creating dir: " << dir << std::endl;
+        return 1;
     }
 
+    for(int i = 0; i < sim->GetAgent()->GetMind()->GetNumberOfElectrodeGroups(); i++) {
+        sptr<ElectrodeGroup> eg = sim->GetAgent()->GetMind()->GetElectrodeGroup(i);
+        sim->AddRecordingElectrodeGroup(eg);
+    }
+    
+    int rtn = BatchRun(sim, dir);
+
     // Save and done
-    Serializer::Instance()->SaveComms(sim,save_name);
+    Serializer::Instance()->SaveComms(sim,config::MODELDIR+save_name);
 
     Log::Instance()->Write("MAIN: All done");
 
@@ -154,36 +168,33 @@ sptr<Session> LoadSession(int session_id) {
     return TestManager::Instance()->CreateSession(session_id);
 }
 
-int BatchRun(sptr<Sim> sim, int iteration) {
-
-    int test_counter = 0;
+int BatchRun(sptr<Sim> sim, std::string session_dir) {
 
     sptr<Session> session = sim->GetSession();
 
+    int test_counter = 0;
+
     while(!session->SessionDone()) {
-
-        std::string dir = config::RECDIR +
-                "/" + std::to_string(iteration) +
-                "/" + session->name +
-                "/" + std::to_string(test_counter);
-
-
-        const int err=mkdir(dir.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
-        if(err==-1) {
-            std::cout << "Error creating dir: " << config::RECDIR << std::endl;
-            return 1;
-        }
 
         sptr<Comms> comms = std::make_shared<Comms>();
 
-        std::thread t_sim;
+        std::string test_dir = session_dir + 
+                "/" + std::to_string(test_counter);
 
-        for(int i = 0; i < sim->GetAgent()->GetMind()->GetNumberOfElectrodeGroups(); i++) {
-            sptr<ElectrodeGroup> eg = sim->GetAgent()->GetMind()->GetElectrodeGroup(i);
-            sim->AddRecordingElectrodeGroup(eg);
+
+        const int err=mkdir(test_dir.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+        if(err==-1) {
+            std::cout << "Error creating dir: " << test_dir << std::endl;
+            return 1;
+        } else {
+            comms->recdir=test_dir;
         }
 
-        sim->StartAllRecordingElectrodes();
+        std::thread t_sim;
+
+        
+
+        sim->StartAllRecordingElectrodes(test_dir);
 
         comms->pause_sim=false;
 
@@ -191,9 +202,9 @@ int BatchRun(sptr<Sim> sim, int iteration) {
         struct timespec start, finish;
         double elapsed;
         clock_gettime(CLOCK_MONOTONIC, &start);
-
+        
         t_sim = std::thread(&Sim::RunSimulation, sim, comms);
-
+        
         while(!comms->quit_sim) {
             if(comms->test_done) {
                 comms->pause_sim=true;
@@ -204,7 +215,9 @@ int BatchRun(sptr<Sim> sim, int iteration) {
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
         }
+        
         if(t_sim.joinable()) t_sim.join();
+        
 
         clock_gettime(CLOCK_MONOTONIC, &finish);
 

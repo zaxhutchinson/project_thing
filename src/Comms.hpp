@@ -25,6 +25,7 @@ struct Comms {
     bool quit_display;
     bool pause_sim;
     bool test_done;
+    std::string recdir;
 
     Comms();
     Comms(const Comms & orig);

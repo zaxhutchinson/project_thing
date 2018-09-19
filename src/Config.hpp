@@ -32,6 +32,7 @@ namespace config {
     extern std::string LOG_FNAME_DEBUG;
     extern std::string LOG_FNAME_RUN;
     extern std::string RECDIR;
+    extern std::string MODELDIR;
     extern double ALPHA_BASE;
     extern std::string THING_FILE;
     extern std::string TEST_FILE;
@@ -56,7 +57,7 @@ namespace config {
     extern double DELTA_TRACE_DECAY;
 
     // MAP
-    extern int NUM_THING_DETAILS;
+
 
     bool LoadConfig(std::string filename);
 
