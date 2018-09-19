@@ -1,0 +1,42 @@
+The fields of Computational Neuroscience and Neural Networks [better word for the CS side?], as practiced by Artificial Intelligence researchers, together form a spectrum of research investigating the structural requirements for animal intelligence. The use of the word 'intelligence' is done in the broadest terms possible and includes the union of all mental faculties. While this spectrum of research is multidimensional, it can be divided by teleology and methodology. Computational Neuroscience is concerned with the recreation of the fundamentional elements behind intelligence. The goal is to understand how these elements contribute to our capabilities. Computer Scientists' likewise seek to recreate these same elements; however, their goal is utilitarian. Due to its goal, Computational Neuroscience restricts itself to implementations that have a reasonable degree of biological basis. 
+
+
+
+
+x
+The intersections of both fields within this multidimensional spectrum...[not sure where I want to go with this]
+
+Whereas the problem solving capabilities of biological organisms are the product of systems that are domain independent, dynamic and life-long, the cadre of current biologically-inspired AI techniques are domain specific, static (post-training), and batch-based.
+
+
+
+Lifelong Machine Learning seeks a way to evolve machine learning methodology from one that is task and domain specific to one that is app
+
+
+Machine learning derives much of its power from the fact it is pitted against a curated view of the world. Traditional techniques depend upon a partial homogenization of format, content and/or context. While this narrowing has proven to be empowering, it carries with it inherent limitations. Diversity, time and the dynamism of epistomology--to name only a few fundamental aspects of the universe with which humans must cope--are areas where machine learning struggles.
+
+This coversation might be best done through fictional examples. Thought experiments.
+
+
+
+##########################
+
+Research Goals:
+
+Stage 1: Build a small network with N inputs and 1 output. Using the dopamine concept, train this network to recognize one class of input.
+
+Stage 2: Determine the best way to integrate two Stage 1 networks.
+
+Stage 3: Implement enough meta-architecture so that:
+      If machine M can recognize input A reliably, and is suddenly confronted with input B which does not cause output A to activate, it instantiates a new network and "considers" input B over and over until the network recognizes it this one not-A input. This new network is integrated with A through some long distant, sparse connections(?). This process gets repeated until the network has learned all classes of inputs from its environment.
+Stage 4: Build tree of knowledge from the ground up based on some distance calculation. Initial idea is time. For instance, if the network recognizes A and approximately 5 seconds later it recognizes B and this happens over and over, the tree will add a second level node C. This node will incorporate the distance (time, in this example) and some measure of concreteness. Only after node C has reached a level of concreteness will Stage 5 happen.
+Stage 5: Build the network forward combining outputs into new inputs to regonize combinations of low level inputs.
+
+
+Question A: What happens to two input classes that were thought to be different, but over time activate two outputs percent p of the time? Hypothesis: this is covered by Stage 5.
+Question B: What happens if a new subnet recognizes class C and D from the start, or begins to after a while. Hypothesis: Eventually, this subnet will favor either C or D and begin to fail to classify one of the two, resulting in the creation of a new subnet for it.
+
+
+
+Bibliograph [References are not formatted]
+[1] Ashby and Helie 2011, "A tutorial on computational cognitive neuroscience: Modeling the neurodynamics of cognition".
