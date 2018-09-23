@@ -56,7 +56,7 @@ public:
     Connection(double weight, double strength, double min_strength, 
         bool learn, bool pot,
         sptr<Neuron> pre, sptr<Neuron> post, PlasticityType p_type,
-        int delay, sptr<Dopamine> dopamine);
+        int delay);
     Connection(const Connection& orig);
     virtual ~Connection();
 
@@ -77,10 +77,14 @@ public:
 
     double Output(int64_t time);
 
+    void AddDopamine(sptr<Dopamine> da);
+    sptr<Dopamine> GetDopamine();
+    void SetDopamineStrength(double strength);
+
     void SetCanLearn(bool learn);
     void SetLearning(bool learn);
     void SetPot(bool pot);
-    void Learn();
+    double Learn();
 
     double Strength();
     double FastPotentiation();

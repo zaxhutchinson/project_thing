@@ -36,6 +36,7 @@
 
 using namespace std;
 
+void PrintHelp();
 void CheckStackSize();
 sptr<Sim> LoadSim(std::string name);
 sptr<Sim> BuildSim(int model);
@@ -82,6 +83,9 @@ int main(int argc, char** argv) {
             session_id = std::stoi(argv[i+1]);
             Log::Instance()->Write("  SessionID: "+std::string(argv[i+1]));
         }
+        if(strcmp(argv[i],"-h")==0) {
+            PrintHelp();
+        }
     }
     
     sptr<Sim> sim = nullptr;
@@ -106,10 +110,11 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    Log::Instance()->Write(sim->GetAgent()->GetMind()->GetTopology());
+    //Log::Instance()->Write(sim->GetAgent()->GetMind()->GetTopology());
     
     // Set the session.
     sim->SetSession(session);
+    Log::Instance()->Write("MAIN: Session set: " + session->name);
 
     // Create session directory
     std::string dir = config::RECDIR + "/" +session->name;
@@ -118,11 +123,7 @@ int main(int argc, char** argv) {
         std::cout << "Error creating dir: " << dir << std::endl;
         return 1;
     }
-
-    for(int i = 0; i < sim->GetAgent()->GetMind()->GetNumberOfElectrodeGroups(); i++) {
-        sptr<ElectrodeGroup> eg = sim->GetAgent()->GetMind()->GetElectrodeGroup(i);
-        sim->AddRecordingElectrodeGroup(eg);
-    }
+    Log::Instance()->Write("MAIN: Directory created: " + dir);
     
     int rtn = BatchRun(sim, dir);
 
@@ -162,6 +163,13 @@ sptr<Sim> LoadSim(std::string name) {
 sptr<Sim> BuildSim(int model) {
     sptr<Sim> sim = std::make_shared<Sim>();
     sim->BuildAgent(model);
+
+    // Add the electrode groups to the sim itself.
+    for(int i = 0; i < sim->GetAgent()->GetMind()->GetNumberOfElectrodeGroups(); i++) {
+        sptr<ElectrodeGroup> eg = sim->GetAgent()->GetMind()->GetElectrodeGroup(i);
+        sim->AddRecordingElectrodeGroup(eg);
+    }
+
     return sim;
 }
 sptr<Session> LoadSession(int session_id) {
@@ -170,16 +178,23 @@ sptr<Session> LoadSession(int session_id) {
 
 int BatchRun(sptr<Sim> sim, std::string session_dir) {
 
+    Log::Instance()->Write("MAIN: Run started");
+
     sptr<Session> session = sim->GetSession();
+
+    Log::Instance()->Write("MAIN: Session got");
 
     int test_counter = 0;
 
     while(!session->SessionDone()) {
+        Log::Instance()->Write("MAIN: test run #" + std::to_string(test_counter));
 
         sptr<Comms> comms = std::make_shared<Comms>();
 
+        std::string test_id = std::to_string(session->GetNextTest()->id);
+
         std::string test_dir = session_dir + 
-                "/" + std::to_string(test_counter);
+                "/" + test_id + "_" + std::to_string(test_counter);
 
 
         const int err=mkdir(test_dir.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
@@ -192,9 +207,13 @@ int BatchRun(sptr<Sim> sim, std::string session_dir) {
 
         std::thread t_sim;
 
-        
+        Log::Instance()->Write("MAIN: starting eletrode recorders");
 
         sim->StartAllRecordingElectrodes(test_dir);
+
+        Log::Instance()->Write("MAIN: electrode recorders started");
+
+        Log::Instance()->Write("MAIN: recording started");
 
         comms->pause_sim=false;
 
@@ -204,6 +223,8 @@ int BatchRun(sptr<Sim> sim, std::string session_dir) {
         clock_gettime(CLOCK_MONOTONIC, &start);
         
         t_sim = std::thread(&Sim::RunSimulation, sim, comms);
+
+        Log::Instance()->Write("MAIN: sim thread started.");
         
         while(!comms->quit_sim) {
             if(comms->test_done) {
@@ -216,8 +237,9 @@ int BatchRun(sptr<Sim> sim, std::string session_dir) {
 
         }
         
+        Log::Instance()->Write("MAIN: joining sim thread");
         if(t_sim.joinable()) t_sim.join();
-        
+        Log::Instance()->Write("MAIN: Sim thread joined");
 
         clock_gettime(CLOCK_MONOTONIC, &finish);
 
@@ -229,4 +251,19 @@ int BatchRun(sptr<Sim> sim, std::string session_dir) {
         test_counter++;
     }
 
+        Log::Instance()->Write("MAIN: run done");
+}
+
+void PrintHelp() {
+    std::cout << "HELP MENU FOR SFROST" << std::endl;
+    std::cout << "\t-n: NEW" << std::endl
+                << "\t\t-n <save_name> <build_number>" << std::endl;
+    std::cout << "\t-l: LOAD" << std::endl 
+                << "\t\t-l <load_name>" << std::endl
+                << "\t\t  If -s is absent, save_name is set to load_name" << std::endl;
+    std::cout << "\t-s: SAVE" << std::endl
+                << "\t\t-s <save_name>" << std::endl;
+    std::cout << "\t-t: SESSION ID" << std::endl
+                << "\t\t-t <session_id>" << std::endl;
+    std::cout << "\t-h: HELP" << std::endl;
 }

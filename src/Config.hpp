@@ -56,7 +56,9 @@ namespace config {
     extern double SLOW_POTENTIATION_MOD;
     extern double DELTA_TRACE_DECAY;
 
-    // MAP
+    // DOPAMINE
+    extern double DOPAMINE_DECAY;
+    extern double DOPAMINE_MIN;
 
 
     bool LoadConfig(std::string filename);

@@ -41,8 +41,11 @@ void Agent::StartLearning() {
 void Agent::EndLearning() {
     mind->EndLearning();
 }
-void Agent::StartFeedback(int input_channel, double off_by) {
-    mind->ReleaseDopamine(input_channel, off_by);
+void Agent::StartFeedback(sptr<Thing> feedback) {
+    //mind->ReleaseDopamine(input_channel, off_by);
+    for(int i = 0; i < mouths.size() && i < feedback->NumDetails(); i++) {
+        mouths[i]->GiveFeedback(feedback->GetDetail(i));
+    }
 }
 void Agent::EndFeedback(int input_channel) {
     mind->PurgeDopamine(input_channel);

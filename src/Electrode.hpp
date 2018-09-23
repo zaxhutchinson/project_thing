@@ -14,6 +14,7 @@
 #ifndef ELECTRODE_HPP
 #define ELECTRODE_HPP
 
+#include<iostream>
 #include<functional>
 #include<string>
 
@@ -46,6 +47,8 @@ public:
     double Measure();
     bool Spike();
     int TimeLastSpike();
+
+    void GiveFeedback(double strength);
     
     void RecordNeuronData(int64_t time);
     void WriteNeuronData();

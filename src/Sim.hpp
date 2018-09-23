@@ -59,11 +59,11 @@ public:
 
     template<class Archive>
     void save(Archive & ar) const {
-        ar(agent,seed);
+        ar(agent,seed,recording);
     }
     template<class Archive>
     void load(Archive & ar) {
-        ar(agent,seed);
+        ar(agent,seed,recording);
         rng = std::mt19937_64(seed);
         Log::Instance()->Write("SERIALIZE: Loading Sim Complete");
     }

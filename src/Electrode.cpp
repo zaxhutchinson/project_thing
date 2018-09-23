@@ -57,7 +57,14 @@ double Electrode::Measure() {
 }
 
 bool Electrode::Spike() {
+    if(neuron.lock()==nullptr) {
+        std::cout << "Neuron null: " << this->name << std::endl << std::flush;
+    }
     return neuron.lock()->Spiked();
+}
+
+void Electrode::GiveFeedback(double strength) {
+    neuron.lock()->AddDopamineStrength(strength);
 }
 
 void Electrode::RecordNeuronData(int64_t time) {
@@ -98,12 +105,14 @@ void ElectrodeGroup::MakeRecorder(std::string path) {
 }
 
 void ElectrodeGroup::StartRecording(std::string path) {
+    Log::Instance()->Write("ELECTRODEGROUP: StartRecording - Enter");
     MakeRecorder(path);
     recorder->StartRecording();
     for(vec_sptr<Electrode>::iterator it = electrodes.begin();
             it != electrodes.end(); it++) {
         (*it)->SetRecorder(recorder);
     }
+    Log::Instance()->Write("ELECTRODEGROUP: StartRecording - Exit");
 }
 
 void ElectrodeGroup::StopRecording() {

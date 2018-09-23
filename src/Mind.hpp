@@ -89,7 +89,6 @@ public:
     }
 
 private:
-    vec<vec_sptr<Neuron>> regions;
     vec_sptr<Neuron> all_neurons;
     vec_sptr<Connection> conns;
     vec_sptr<ExInput> input;

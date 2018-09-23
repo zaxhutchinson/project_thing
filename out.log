@@ -5,80 +5,994 @@ CMD LINE ARGS:
   New: test 0
   SessionID: 0
 BUILDER: Build Mind 000
-  REGIONS: 3
-    [0] 200 neurons
-    [1] 35 neurons
-    [2] 5 neurons
- CONNECTIONS: 7991
-
-MAIN: Starting main loop
+MAIN: Session set: t1
+MAIN: Directory created: /home/zax/Projects/ProjectThingOutput/recordings/test_000/t1
+MAIN: Run started
+MAIN: Session got
+MAIN: test run #0
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
 Time: 1000
 Time: 2000
 Time: 3000
 Time: 4000
-MAIN: Main loop done
-  Time: 0.605239
-MAIN: Starting main loop
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.612600
+MAIN: test run #1
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
 Time: 1000
 Time: 2000
 Time: 3000
 Time: 4000
-MAIN: Main loop done
-  Time: 0.605037
-MAIN: Starting main loop
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.907827
+MAIN: test run #2
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
 Time: 1000
 Time: 2000
 Time: 3000
 Time: 4000
-MAIN: Main loop done
-  Time: 0.605641
-MAIN: Starting main loop
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.911702
+MAIN: test run #3
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
 Time: 1000
 Time: 2000
 Time: 3000
 Time: 4000
-MAIN: Main loop done
-  Time: 0.605244
-MAIN: Starting main loop
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908822
+MAIN: test run #4
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
 Time: 1000
 Time: 2000
 Time: 3000
 Time: 4000
-MAIN: Main loop done
-  Time: 0.605146
-MAIN: Starting main loop
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908858
+MAIN: test run #5
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
 Time: 1000
 Time: 2000
 Time: 3000
 Time: 4000
-MAIN: Main loop done
-  Time: 0.604906
-MAIN: Starting main loop
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908703
+MAIN: test run #6
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
 Time: 1000
 Time: 2000
 Time: 3000
 Time: 4000
-MAIN: Main loop done
-  Time: 0.604805
-MAIN: Starting main loop
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.904861
+MAIN: test run #7
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
 Time: 1000
 Time: 2000
 Time: 3000
 Time: 4000
-MAIN: Main loop done
-  Time: 0.707028
-MAIN: Starting main loop
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908744
+MAIN: test run #8
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
 Time: 1000
 Time: 2000
 Time: 3000
 Time: 4000
-MAIN: Main loop done
-  Time: 0.707248
-MAIN: Starting main loop
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908407
+MAIN: test run #9
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
 Time: 1000
 Time: 2000
 Time: 3000
 Time: 4000
-MAIN: Main loop done
-  Time: 0.605370
-MAIN: All done
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.906447
+MAIN: test run #10
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 3.112821
+MAIN: test run #11
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.904534
+MAIN: test run #12
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908336
+MAIN: test run #13
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.911141
+MAIN: test run #14
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.912026
+MAIN: test run #15
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.906652
+MAIN: test run #16
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908416
+MAIN: test run #17
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908230
+MAIN: test run #18
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908911
+MAIN: test run #19
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 3.010613
+MAIN: test run #20
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908803
+MAIN: test run #21
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.909069
+MAIN: test run #22
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.913432
+MAIN: test run #23
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+SIM: Starting main loop
+SIM: Starting main loop
+MAIN: sim thread started.
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908814
+MAIN: test run #24
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908342
+MAIN: test run #25
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908346
+MAIN: test run #26
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.909241
+MAIN: test run #27
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908624
+MAIN: test run #28
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.909151
+MAIN: test run #29
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908312
+MAIN: test run #30
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908290
+MAIN: test run #31
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908729
+MAIN: test run #32
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908363
+MAIN: test run #33
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908669
+MAIN: test run #34
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.909004
+MAIN: test run #35
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908401
+MAIN: test run #36
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908353
+MAIN: test run #37
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.906593
+MAIN: test run #38
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908643
+MAIN: test run #39
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908831
+MAIN: test run #40
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908252
+MAIN: test run #41
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908449
+MAIN: test run #42
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.907084
+MAIN: test run #43
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.906915
+MAIN: test run #44
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.904639
+MAIN: test run #45
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908057
+MAIN: test run #46
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908621
+MAIN: test run #47
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908562
+MAIN: test run #48
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.911363
+MAIN: test run #49
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908913
+MAIN: test run #50
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908407
+MAIN: test run #51
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.909312
+MAIN: test run #52
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908277
+MAIN: test run #53
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000
+Time: 4000
+SIM: Main loop done
+MAIN: joining sim thread
+MAIN: Sim thread joined
+  Time: 2.908432
+MAIN: test run #54
+MAIN: starting eletrode recorders
+SIM: StartAllRecordingElectrodes - Enter
+ELECTRODEGROUP: StartRecording - Enter
+ELECTRODEGROUP: StartRecording - Exit
+SIM: StartAllRecordingElectrodes - Exit
+MAIN: electrode recorders started
+MAIN: recording started
+MAIN: sim thread started.
+SIM: Starting main loop
+Time: 1000
+Time: 2000
+Time: 3000

@@ -23,6 +23,7 @@ TestDef::TestDef(int id, std::string qname,
 Test::Test(const TestDef & tp) {
     question = ThingManager::Instance()->GetThing(tp.qname);
     answer = ThingManager::Instance()->GetThing(tp.aname);
+    this->id = tp.id;
     sstart = tp.sstart;
     sduration = tp.sduration;
     rstart = tp.rstart;
@@ -96,6 +97,11 @@ sptr<Thing> Session::GetCurrentFeedback() {
 }
 void Session::RemoveCurrentTest() {
     tests.pop_front();
+}
+sptr<Test> Session::GetNextTest() {
+    if(!tests.empty()) {
+        return tests.front();
+    } else return nullptr;
 }
 uptr<TestManager> TestManager::instance = nullptr;
 TestManager * TestManager::Instance() {

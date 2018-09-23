@@ -80,6 +80,8 @@ Neuron::Neuron(const NT * nt, long seed, unsigned int region_id, int datasize) {
     //cur_time = 0;
     v[pre_index] = c;
     u[pre_index] = d;
+
+    dopamine = std::make_shared<Dopamine>();
 }
 
 Neuron::Neuron(const NT * nt, long seed, unsigned int region_id,
@@ -132,6 +134,8 @@ Neuron::Neuron(const NT * nt, long seed, unsigned int region_id,
     //cur_time = 0;
     v[pre_index] = c;
     u[pre_index] = d;
+
+    dopamine = std::make_shared<Dopamine>();
 }
 
 Neuron::~Neuron() {
@@ -254,6 +258,32 @@ double Neuron::TotalSpikeAge() {
 }
 
 bool Neuron::Spiked() { return spiked; }
+
+void Neuron::AddDopamineStrength(double strength) {
+    dopamine->AddStrength(strength);
+}
+void Neuron::SetDopamineStrength(double strength) {
+    dopamine->SetStrength(strength);
+}
+
+void Neuron::BackProp() {
+    double total_input_strength = 0.0;
+    for(vec_sptr<Connection>::iterator it = input.begin();
+            it != input.end(); it++) {
+        total_input_strength += (*it)->Strength();
+    }
+
+    // Divide da and send to connections
+    for(vec_sptr<Connection>::iterator it = input.begin();
+            it != input.end(); it++) {
+        (*it)->SetDopamineStrength(
+            ((*it)->Strength() / total_input_strength) * dopamine->GetStrength()
+        );
+    }
+
+    // Purge dopamine from neuron.
+    dopamine->SetStrength(0.0);
+}
 
 void Neuron::STDP(int64_t time) {
     for(vec_sptr<Connection>::iterator it = input.begin();

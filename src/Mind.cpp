@@ -23,7 +23,7 @@ Mind::~Mind() {
 }
 
 void Mind::AddRegion(vec_sptr<Neuron> region) {
-    regions.push_back(region);
+    all_neurons.insert(all_neurons.begin(), region.begin(), region.end());
 }
 void Mind::AddConnection(sptr<Connection> conn) {
     conns.push_back(conn);
@@ -45,7 +45,7 @@ void Mind::AddSynapseRecorder(sptr<SynapseRecorder> rec) {
 void Mind::AddDopamineChannel(sptr<Dopamine> dopamine) {
     dopamine_channels.push_back(dopamine);
 }
-int Mind::GetNumberOfRegions() {
+/* int Mind::GetNumberOfRegions() {
     return regions.size();
 }
 const vec<vec_sptr<Neuron>> & Mind::GetRegions() {
@@ -54,7 +54,7 @@ const vec<vec_sptr<Neuron>> & Mind::GetRegions() {
 
 vec_sptr<Neuron> & Mind::GetRegion(int region) {
     return regions[region];
-}
+} */
 
 sptr<ElectrodeGroup> Mind::GetElectrodeGroup(int index) {
     if(index < electrode_groups.size()) return electrode_groups[index];
@@ -103,11 +103,15 @@ void Mind::Update(int64_t time, std::mt19937_64 & rng) {
     for(int i = 0; i < syn_recorders.size(); i++) {
         syn_recorders[i]->Update(time);
     }
-    #pragma omp parallel for
+    //#pragma omp parallel for
+    double change=0.0;
     for(vec_sptr<Connection>::iterator it = conns.begin();
             it != conns.end(); it++) {
 
-        (*it)->Learn();
+        change+=(*it)->Learn();
+    }
+    if(change>0.0 || change<0.0) {
+        Log::Instance()->Run("MIND: Conn str change: " + std::to_string(change));
     }
 }
 void Mind::StartLearning() {
@@ -136,26 +140,13 @@ void Mind::CleanUp() {
 }
 
 std::string Mind::GetTopology() {
-    std::string str("");
-    str += "  REGIONS: " + std::to_string(regions.size()) + "\n";
 
-    for(int i = 0; i < regions.size(); i++) {
-        str += "    [" + std::to_string(i) + "] " + std::to_string(regions[i].size()) +
-                " neurons\n";
-    }
-    str += " CONNECTIONS: " + std::to_string(conns.size()) + "\n";
-
-
-    return str;
 }
 
 void Mind::SaveNeuronRNGToSeed() {
-    for(vec<vec_sptr<Neuron>>::iterator it = regions.begin();
-            it != regions.end(); it++) {
-        for(vec_sptr<Neuron>::iterator it2 = it->begin();
-                it2 != it->end(); it2++) {
-            (*it2)->SaveRNGToSeed();
-        }
+    for(vec_sptr<Neuron>::iterator it = all_neurons.begin();
+            it != all_neurons.end(); it++) {
+            (*it)->SaveRNGToSeed();
     }
 }
 

@@ -10,3 +10,6 @@ void Dopamine::SetStrength(double strength) {
 double Dopamine::GetStrength() {
     return strength;
 }
+void Dopamine::AddStrength(double strength) {
+    this->strength += strength;
+}

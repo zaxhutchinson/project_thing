@@ -37,6 +37,8 @@
 #include"IntVec3.hpp"
 #include"AlphaBuffer.hpp"
 #include"Log.hpp"
+#include"Dopamine.hpp"
+#include"zaxlib.hpp"
 
 class Neuron {
 public:
@@ -94,6 +96,10 @@ public:
     double TotalSpikeAge();
     bool Spiked();
 
+    void AddDopamineStrength(double strength);
+    void SetDopamineStrength(double strength);
+    void BackProp();
+
     double X();
     double Y();
     double Z();
@@ -112,7 +118,7 @@ public:
     void save(Archive & ar) const {
         ar(id,name,cap,vr,vt,k,vpeak,a,b,c,d,noise,beta,
                 alpha_output,alpha_index,alpha_index_mod,
-                cur_index,pre_index,
+                cur_index,pre_index,dopamine,
                 data_size,v,u,spikes,input,output,ex_input,
                 seed,spiked,region_id);
     }
@@ -120,7 +126,7 @@ public:
     void load(Archive & ar) {
         ar(id,name,cap,vr,vt,k,vpeak,a,b,c,d,noise,beta,
                 alpha_output,alpha_index,alpha_index_mod,
-                cur_index,pre_index,
+                cur_index,pre_index,dopamine,
                 data_size,v,u,spikes,input,output,ex_input,
                 seed,spiked,region_id);
         rng = std::mt19937_64(seed);
@@ -163,6 +169,8 @@ private:
     vec_sptr<Connection> input;
     vec_sptr<Connection> output;
     vec_sptr<ExInput> ex_input;
+
+    sptr<Dopamine> dopamine;
 
     std::mt19937_64 rng;
     long seed;

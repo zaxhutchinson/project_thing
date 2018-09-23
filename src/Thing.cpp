@@ -19,7 +19,7 @@ std::string Thing::GetName() {
     return name;
 }
 int Thing::NumDetails() {
-    return num_details;
+    return details.size();
 }
 double Thing::GetDetail(int index) {
     return details[index];
@@ -36,26 +36,28 @@ void Thing::CreateDetail(double amount) {
 }
 sptr<Thing> Thing::NormalizeDetail() {
     sptr<Thing> t = std::make_shared<Thing>(name+"_norm",num_details);
-    double sum=0.0;
+    double max_val=0.0;
 
     for(int i = 0; i < details.size(); i++) {
-        sum=details[i];
+        if(details[i] > max_val) {
+            max_val=details[i];
+        }
     }
 
     for(int i = 0; i < details.size(); i++) {
-        t->SetDetail(i, details[i] / sum);
+        t->SetDetail(i, details[i] / max_val);
     }
     return t;
 }
-double Thing::AbsDiff(sptr<Thing> t1, sptr<Thing> t2) {
-    double diff=0.0;
+sptr<Thing> Thing::AbsDiff(sptr<Thing> t1, sptr<Thing> t2) {
+    sptr<Thing> diff;
     int min_details = (t1->NumDetails()<t2->NumDetails() ? 
                         t1->NumDetails() :
                         t2->NumDetails()); 
     for(int i = 0; i < min_details; i++) {
-        diff = t1->GetDetail(i) - t2->GetDetail(i);
+        diff->SetDetail(i, t1->GetDetail(i) - t2->GetDetail(i));
     }
-    return std::abs(diff) / min_details;
+    return diff;
 }
 std::string Thing::ToString() {
     std::string str(name);

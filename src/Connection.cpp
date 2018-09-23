@@ -26,7 +26,7 @@ Connection::Connection() {
 Connection::Connection(double weight, double strength, double min_strength,
         bool learn, bool pot,
         sptr<Neuron> pre, sptr<Neuron> post, PlasticityType p_type,
-        int delay, sptr<Dopamine> dopamine) {
+        int delay) {
     this->weight = weight;
     this->strength = strength;
     this->min_strength = min_strength;
@@ -42,9 +42,9 @@ Connection::Connection(double weight, double strength, double min_strength,
     this->last_post_spike = -1;
     this->last_potentiation_time = -1;
     this->delay = delay;
-    this->dopamine = dopamine;
+    this->dopamine = std::make_shared<Dopamine>();
 
-    this->learning=false;
+    this->learning=true;
 
     SetPlasticity();
 }
@@ -95,7 +95,7 @@ void Connection::PreSTANDARD_E(int64_t time) {
         if(learning) {
             double delta = 0.0;
             if(diff<30.0) {
-                delta = -0.1 * std::exp(-diff/30.0);
+                delta = -0.12 * std::exp(-diff/30.0);
             }
             delta_trace+=delta;
         }
@@ -225,6 +225,16 @@ double Connection::Output(int64_t time) {
                 ((weight*strength) / (std::abs(weight)+std::abs(strength)));
     }
 }
+
+void Connection::AddDopamine(sptr<Dopamine> da) {
+    dopamine=da;
+}
+sptr<Dopamine> Connection::GetDopamine() {
+    return dopamine;
+}
+void Connection::SetDopamineStrength(double strength) {
+    dopamine->SetStrength(strength);
+}
 void Connection::SetCanLearn(bool learn) {
     this->can_learn = learn;
 }
@@ -236,12 +246,26 @@ void Connection::SetLearning(bool learn) {
 void Connection::SetPot(bool pot) {
     this->pot = pot;
 }
-void Connection::Learn() {
+double Connection::Learn() {
+    double change=0.0;
     if(can_learn) {
-        strength+=(delta_trace*dopamine->GetStrength());
+        change = (delta_trace*dopamine->GetStrength());
+        strength+=change;
         if(strength<min_strength) strength=min_strength;
         delta_trace=0.0;
     }
+
+    double decayed_da = dopamine->GetStrength() - 
+                    config::DOPAMINE_DECAY*dopamine->GetStrength();
+
+    // Only pass on decayed dopamine if it is greater than min strength
+    if(decayed_da>=config::DOPAMINE_MIN) {
+        pre.lock()->AddDopamineStrength(decayed_da);
+    }
+    // Purge dopamine
+    dopamine->SetStrength(0.0);
+
+    return change;
 }
 
 double Connection::Strength() { return strength; }

@@ -7,8 +7,8 @@
         <sduration>999</sduration>
         <rstart>3000</rstart>
         <rduration>999</rduration>
-        <fstart>3000</fstart>
+        <fstart>4000</fstart>
         <fduration>1</fduration>
-        <etime>4000</etime>
+        <etime>4001</etime>
     </testdef>
 </root>

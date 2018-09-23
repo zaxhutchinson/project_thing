@@ -29,7 +29,7 @@ public:
     /////////////////////////////////////////////////////////////////////////
     void StartLearning();
     void EndLearning();
-    void StartFeedback(int input_channel, double off_by);
+    void StartFeedback(sptr<Thing> feedback);
     void EndFeedback(int input_channel);
     /////////////////////////////////////////////////////////////////////////
     void GiveVisualInput(sptr<Thing> thing);

@@ -10,6 +10,7 @@ public:
     Dopamine();
     void SetStrength(double strength);
     double GetStrength();
+    void AddStrength(double strength);
 
     template<class Archive>
     void save(Archive & ar) const {

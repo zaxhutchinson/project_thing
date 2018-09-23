@@ -17,7 +17,7 @@ public:
     void AddDetail(int index, double amount);
     void CreateDetail(double amount);
     sptr<Thing> NormalizeDetail();
-    static double AbsDiff(sptr<Thing> t1, sptr<Thing> t2);
+    static sptr<Thing> AbsDiff(sptr<Thing> t1, sptr<Thing> t2);
     std::string ToString();
 private:
     std::string name;

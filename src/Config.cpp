@@ -46,9 +46,13 @@ namespace config {
     double MEDIUM_POTENTIATION_MOD;
     double SLOW_POTENTIATION_MOD;
     double DELTA_TRACE_DECAY;
-    // map
+    
     int NUM_THING_DETAILS;
 
+
+    // DOPAMINE
+    double DOPAMINE_DECAY;
+    double DOPAMINE_MIN;
 }
 
 bool config::LoadConfig(std::string filename) {
@@ -89,7 +93,8 @@ bool config::LoadConfig(std::string filename) {
     SLOW_POTENTIATION_MOD = reader.GetReal("synapse","slow_potentiation_mod",2.0);
     DELTA_TRACE_DECAY = reader.GetReal("synapse","delta_trace_decay",0.001);
 
-
+    DOPAMINE_DECAY = reader.GetReal("dopamine","dopamine_decay",0.1);
+    DOPAMINE_MIN = reader.GetReal("dopamine","dopamine_min",0.01);
 }
 
 void config::PrintConfig() {

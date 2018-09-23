@@ -40,6 +40,7 @@ struct Test {
     Test(const TestDef & tp);
     sptr<Thing> question;
     sptr<Thing> answer;
+    int id;
     int64_t sstart;         // Stimulus start
     int64_t sduration;      // Stimulus duration
     int64_t rstart;         // Response start
@@ -70,6 +71,8 @@ struct Session {
     sptr<Thing> GetCurrentStimulus();
     sptr<Thing> GetCurrentFeedback();
     void RemoveCurrentTest();
+    sptr<Test> GetNextTest();
+
     std::string name;
     list_sptr<Test> tests;
 };

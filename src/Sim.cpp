@@ -63,10 +63,10 @@ void Sim::RunSimulation(sptr<Comms> comms) {
 
     time=0;
 
-    Log::Instance()->Write("MAIN: Starting main loop");
+    Log::Instance()->Write("SIM: Starting main loop");
 
     sptr<Thing> response = nullptr;
-    double off_by = 0.0;
+    sptr<Thing> off_by = nullptr;
     
     while(!comms->test_done) {
         
@@ -82,16 +82,23 @@ void Sim::RunSimulation(sptr<Comms> comms) {
             agent->GiveVisualInput(session->GetCurrentStimulus());
         } else if(session->EndStimulus(time)) {
             agent->PurgeAllInput();
-        } else if(session->StartResponse(time)) {
+        } 
+        
+        if(session->StartResponse(time)) {
             agent->PrepareResponse(time,session->ResponseDuration());
         } else if(session->EndResponse(time)) {
             response = agent->GetNormalizedResponse();
+            std::cout << response->ToString() << std::endl;
             off_by = Thing::AbsDiff(response,session->GetCurrentFeedback());
-        } else if(session->StartFeedback(time)) {
-            agent->StartFeedback(0,off_by);
+        } 
+        
+        if(session->StartFeedback(time)) {
+            agent->StartFeedback(off_by);
         } else if(session->EndFeedback(time)) {
             agent->EndFeedback(0);
-        } else if(session->EndTest(time)) {
+        } 
+        
+        if(session->EndTest(time)) {
             comms->test_done=true;
         }
 
@@ -102,9 +109,10 @@ void Sim::RunSimulation(sptr<Comms> comms) {
         if(time%1000==0) Log::Instance()->Write("Time: "+std::to_string(time));
     }
     
+    std::cout << "SIM offby: " << off_by << std::endl;
     
     session->RemoveCurrentTest();
-    Log::Instance()->Write("MAIN: Main loop done");
+    Log::Instance()->Write("SIM: Main loop done");
 }
 
 int Sim::Time() { return time; }
@@ -144,10 +152,12 @@ void Sim::AddRecordingElectrodeGroup(sptr<ElectrodeGroup> eg) {
 }
 
 void Sim::StartAllRecordingElectrodes(std::string path) {
+    Log::Instance()->Write("SIM: StartAllRecordingElectrodes - Enter");
     for(vec_sptr<ElectrodeGroup>::iterator it = recording.begin();
             it != recording.end(); it++) {
         (*it)->StartRecording(path);
     }
+    Log::Instance()->Write("SIM: StartAllRecordingElectrodes - Exit");
 }
 
 void Sim::StopAllRecordingElectrodes() {

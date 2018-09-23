@@ -115,8 +115,7 @@ sptr<Mind> Builder::BuildMind000(long seed) {
                     sptr<Connection> conn = std::make_shared<Connection>(
                         pfc_pc_pc_w, std::abs(pfc_pc_pc_w), -std::abs(pfc_pc_pc_w),
                         true, true,
-                        pre, post, e_type, Neuron::Distance(pre,post)/10.0,
-                        da
+                        pre, post, e_type, Neuron::Distance(pre,post)/10.0
                     );
                     pre->AddOutputConnection(conn);
                     post->AddInputConnection(conn);
@@ -125,8 +124,7 @@ sptr<Mind> Builder::BuildMind000(long seed) {
                     sptr<Connection> conn = std::make_shared<Connection>(
                         pfc_pc_pc_w, 0.0, -std::abs(pfc_pc_pc_w),
                         true, true,
-                        pre, post, e_type, Neuron::Distance(pre,post)/10.0,
-                        da
+                        pre, post, e_type, Neuron::Distance(pre,post)/10.0
                     );
                     pre->AddOutputConnection(conn);
                     post->AddInputConnection(conn);
@@ -144,8 +142,7 @@ sptr<Mind> Builder::BuildMind000(long seed) {
                     sptr<Connection> conn = std::make_shared<Connection>(
                         pfc_pc_in_w, std::abs(pfc_pc_in_w), -std::abs(pfc_pc_in_w),
                         true, false,
-                        pre, post, e_type, Neuron::Distance(pre,post)/10.0,
-                        da
+                        pre, post, e_type, Neuron::Distance(pre,post)/10.0
                     );
                     pre->AddOutputConnection(conn);
                     post->AddInputConnection(conn);
@@ -154,8 +151,7 @@ sptr<Mind> Builder::BuildMind000(long seed) {
                     sptr<Connection> conn = std::make_shared<Connection>(
                         pfc_pc_in_w, 0.0, -std::abs(pfc_pc_in_w),
                         true, false,
-                        pre, post, e_type, Neuron::Distance(pre,post)/10.0,
-                        da
+                        pre, post, e_type, Neuron::Distance(pre,post)/10.0
                     );
                     pre->AddOutputConnection(conn);
                     post->AddInputConnection(conn);
@@ -173,8 +169,7 @@ sptr<Mind> Builder::BuildMind000(long seed) {
                     sptr<Connection> conn = std::make_shared<Connection>(
                         pfc_in_pc_w, std::abs(pfc_in_pc_w), -std::abs(pfc_in_pc_w),
                         true, false,
-                        pre, post, i_type, Neuron::Distance(pre,post)/10.0,
-                        da
+                        pre, post, i_type, Neuron::Distance(pre,post)/10.0
                     );
                     pre->AddOutputConnection(conn);
                     post->AddInputConnection(conn);
@@ -183,8 +178,7 @@ sptr<Mind> Builder::BuildMind000(long seed) {
                     sptr<Connection> conn = std::make_shared<Connection>(
                         pfc_in_pc_w, 0.0, -std::abs(pfc_in_pc_w),
                         true, false,
-                        pre, post, i_type, Neuron::Distance(pre,post)/10.0,
-                        da
+                        pre, post, i_type, Neuron::Distance(pre,post)/10.0
                     );
                     pre->AddOutputConnection(conn);
                     post->AddInputConnection(conn);
@@ -202,8 +196,7 @@ sptr<Mind> Builder::BuildMind000(long seed) {
                     sptr<Connection> conn = std::make_shared<Connection>(
                         pfc_pc_ii_w, std::abs(pfc_pc_ii_w), -std::abs(pfc_pc_ii_w),
                         true, false,
-                        pre, post, e_type, Neuron::Distance(pre,post)/10.0,
-                        da
+                        pre, post, e_type, Neuron::Distance(pre,post)/10.0
                     );
                     pre->AddOutputConnection(conn);
                     post->AddInputConnection(conn);
@@ -212,8 +205,7 @@ sptr<Mind> Builder::BuildMind000(long seed) {
                     sptr<Connection> conn = std::make_shared<Connection>(
                         pfc_pc_ii_w, 0.0, -std::abs(pfc_pc_ii_w),
                         true, false,
-                        pre, post, e_type, Neuron::Distance(pre,post)/10.0,
-                        da
+                        pre, post, e_type, Neuron::Distance(pre,post)/10.0
                     );
                     pre->AddOutputConnection(conn);
                     post->AddInputConnection(conn);
@@ -231,8 +223,7 @@ sptr<Mind> Builder::BuildMind000(long seed) {
                     sptr<Connection> conn = std::make_shared<Connection>(
                         pfc_ii_in_w, std::abs(pfc_ii_in_w), -std::abs(pfc_ii_in_w),
                         true, false,
-                        pre, post, i_type, Neuron::Distance(pre,post)/10.0,
-                        da
+                        pre, post, i_type, Neuron::Distance(pre,post)/10.0
                     );
                     pre->AddOutputConnection(conn);
                     post->AddInputConnection(conn);
@@ -241,8 +232,7 @@ sptr<Mind> Builder::BuildMind000(long seed) {
                     sptr<Connection> conn = std::make_shared<Connection>(
                         pfc_ii_in_w, 0.0, -std::abs(pfc_ii_in_w),
                         true, false,
-                        pre, post, i_type, Neuron::Distance(pre,post)/10.0,
-                        da
+                        pre, post, i_type, Neuron::Distance(pre,post)/10.0
                     );
                     pre->AddOutputConnection(conn);
                     post->AddInputConnection(conn);
