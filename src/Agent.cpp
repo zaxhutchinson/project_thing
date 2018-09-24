@@ -4,6 +4,9 @@
 Agent::Agent() {
 
 }
+void Agent::Reset() {
+    mind->Reset();
+}
 /////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
@@ -41,15 +44,15 @@ void Agent::StartLearning() {
 void Agent::EndLearning() {
     mind->EndLearning();
 }
-void Agent::StartFeedback(sptr<Thing> feedback) {
+void Agent::GiveFeedback(sptr<Thing> feedback) {
     //mind->ReleaseDopamine(input_channel, off_by);
     for(int i = 0; i < mouths.size() && i < feedback->NumDetails(); i++) {
         mouths[i]->GiveFeedback(feedback->GetDetail(i));
     }
 }
-void Agent::EndFeedback(int input_channel) {
-    mind->PurgeDopamine(input_channel);
-}
+// void Agent::EndFeedback(int input_channel) {
+//     mind->PurgeDopamine(input_channel);
+// }
 /////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////

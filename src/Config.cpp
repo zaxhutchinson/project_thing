@@ -18,6 +18,7 @@ namespace config {
     std::random_device rd;
     std::mt19937_64 rng;
 
+    long RAND_SEED;
     int DATASIZE;
     bool DEBUG;
     std::string LOG_FNAME_MAIN;
@@ -65,6 +66,7 @@ bool config::LoadConfig(std::string filename) {
 
     rng.seed(rd());
 
+    RAND_SEED = reader.GetInteger("general","rand_seed",-1);
     DATASIZE = reader.GetInteger("general","datasize",1000);
     DEBUG = reader.GetBoolean("general","debug",false);
     LOG_FNAME_MAIN = reader.Get("general","log_fname_main","out.log");

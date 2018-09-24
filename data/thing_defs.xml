@@ -1,5 +1,5 @@
 <root>
-<thing>
+    <thing>
         <name>thing0</name>
         <detail>1.0</detail>
         <detail>0.0</detail>
@@ -8,110 +8,16 @@
     </thing>
     <thing>
         <name>thing1</name>
+        <detail>0.0</detail>
+        <detail>0.0</detail>
+        <detail>0.5</detail>
         <detail>1.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
     </thing>
     <thing>
         <name>thing2</name>
         <detail>1.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-    </thing>
-    <thing>
-        <name>thing3</name>
-        <detail>1.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-    </thing>
-    <thing>
-        <name>thing4</name>
-        <detail>1.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-    </thing>
-    <thing>
-        <name>thing5</name>
-        <detail>1.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-    </thing>
-    <thing>
-        <name>thing6</name>
-        <detail>1.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-    </thing>
-    <thing>
-        <name>thing7</name>
-        <detail>1.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-    </thing>
-    <thing>
-        <name>thing8</name>
-        <detail>1.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-    </thing>
-    <thing>
-        <name>thing9</name>
-        <detail>1.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
-        <detail>0.0</detail>
+        <detail>0.75</detail>
+        <detail>0.5</detail>
+        <detail>0.25</detail>
     </thing>
 </root>

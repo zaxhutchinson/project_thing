@@ -187,6 +187,7 @@ int BatchRun(sptr<Sim> sim, std::string session_dir) {
     int test_counter = 0;
 
     while(!session->SessionDone()) {
+        std::cout << "Run # " << std::to_string(test_counter) << std::endl;
         Log::Instance()->Write("MAIN: test run #" + std::to_string(test_counter));
 
         sptr<Comms> comms = std::make_shared<Comms>();

@@ -16,9 +16,13 @@
 
 Sim::Sim() {
 
-    std::random_device rd;
-    rng = std::mt19937_64(rd());
-
+    if(config::RAND_SEED==-1) {
+        std::random_device rd;
+        rng = std::mt19937_64(rd());
+    }
+    else {
+        rng = std::mt19937_64(config::RAND_SEED);
+    }
     time = 0;
     wait_time = 0;
     session=nullptr;
@@ -66,7 +70,10 @@ void Sim::RunSimulation(sptr<Comms> comms) {
     Log::Instance()->Write("SIM: Starting main loop");
 
     sptr<Thing> response = nullptr;
+    sptr<Thing> response_norm = nullptr;
     sptr<Thing> off_by = nullptr;
+
+    agent->Reset();
     
     while(!comms->test_done) {
         
@@ -81,24 +88,33 @@ void Sim::RunSimulation(sptr<Comms> comms) {
         if(session->StartStimulus(time)) {
             agent->GiveVisualInput(session->GetCurrentStimulus());
         } else if(session->EndStimulus(time)) {
-            agent->PurgeAllInput();
+            //agent->PurgeAllInput();
         } 
         
         if(session->StartResponse(time)) {
             agent->PrepareResponse(time,session->ResponseDuration());
         } else if(session->EndResponse(time)) {
-            response = agent->GetNormalizedResponse();
-            std::cout << response->ToString() << std::endl;
-            off_by = Thing::AbsDiff(response,session->GetCurrentFeedback());
+            response = agent->GetRawResponse();
+            response_norm = agent->GetNormalizedResponse();
+            off_by = Thing::AbsDiff(response_norm,session->GetCurrentFeedback());
+
+            Log::Instance()->Run(response_norm->ToString());
+            std::cout << "====================================================\n";
+            std::cout << "RESPONSE:  " << response->ToString() << std::endl;
+            std::cout << "NORM RESP: " << response_norm->ToString() << std::endl;
+            std::cout << "SIM offby: " << off_by->ToString() << std::endl;
+            std::cout << "====================================================\n\n";
         } 
         
-        if(session->StartFeedback(time)) {
-            agent->StartFeedback(off_by);
-        } else if(session->EndFeedback(time)) {
-            agent->EndFeedback(0);
+        if(session->GiveFeedback(time)) {
+            agent->GiveFeedback(off_by);
         } 
+        // else if(session->EndFeedback(time)) {
+        //     agent->EndFeedback(0);
+        // } 
         
         if(session->EndTest(time)) {
+            agent->PurgeAllInput();
             comms->test_done=true;
         }
 
@@ -109,8 +125,9 @@ void Sim::RunSimulation(sptr<Comms> comms) {
         if(time%1000==0) Log::Instance()->Write("Time: "+std::to_string(time));
     }
     
-    std::cout << "SIM offby: " << off_by << std::endl;
     
+
+
     session->RemoveCurrentTest();
     Log::Instance()->Write("SIM: Main loop done");
 }

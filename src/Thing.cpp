@@ -50,19 +50,16 @@ sptr<Thing> Thing::NormalizeDetail() {
     return t;
 }
 sptr<Thing> Thing::AbsDiff(sptr<Thing> t1, sptr<Thing> t2) {
-    sptr<Thing> diff;
-    int min_details = (t1->NumDetails()<t2->NumDetails() ? 
-                        t1->NumDetails() :
-                        t2->NumDetails()); 
-    for(int i = 0; i < min_details; i++) {
+    sptr<Thing> diff = std::make_shared<Thing>("off_by",t2->NumDetails());
+    for(int i = 0; i < t2->NumDetails(); i++) {
         diff->SetDetail(i, t1->GetDetail(i) - t2->GetDetail(i));
     }
     return diff;
 }
 std::string Thing::ToString() {
-    std::string str(name);
+    std::string str("");
     for(int i = 0; i < num_details; i++) {
-        str += "\n" + std::to_string(details[i]);
+        str += "\n\t" + std::to_string(details[i]);
     }
-    return str+"\n";
+    return str;
 }

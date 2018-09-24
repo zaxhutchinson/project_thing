@@ -26,6 +26,7 @@ namespace config {
     extern std::random_device rd;
     extern std::mt19937_64 rng;
 
+    extern long RAND_SEED;
     extern int DATASIZE;
     extern bool DEBUG;
     extern std::string LOG_FNAME_MAIN;

@@ -22,6 +22,15 @@ Mind::Mind(const Mind& orig) {
 Mind::~Mind() {
 }
 
+void Mind::Reset() {
+
+    for(vec_sptr<Connection>::iterator it = conns.begin();
+            it != conns.end(); it++) {
+        (*it)->Reset();
+    }
+
+}
+
 void Mind::AddRegion(vec_sptr<Neuron> region) {
     all_neurons.insert(all_neurons.begin(), region.begin(), region.end());
 }
@@ -110,9 +119,9 @@ void Mind::Update(int64_t time, std::mt19937_64 & rng) {
 
         change+=(*it)->Learn();
     }
-    if(change>0.0 || change<0.0) {
-        Log::Instance()->Run("MIND: Conn str change: " + std::to_string(change));
-    }
+    if(change != 0.0)
+        std::cout << "CHANGE: " << change << std::endl;
+
 }
 void Mind::StartLearning() {
     for(int i = 0; i < conns.size(); i++) {

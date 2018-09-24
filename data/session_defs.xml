@@ -2,6 +2,16 @@
     <sessiondef>
         <id>0</id>
         <sname>t1</sname>
-        <testdefid iterations="1000">0</testdefid>
+        <testdefid iterations="100">0</testdefid>
+    </sessiondef>
+    <sessiondef>
+        <id>1</id>
+        <sname>t1</sname>
+        <testdefid iterations="100">1</testdefid>
+    </sessiondef>
+    <sessiondef>
+        <id>2</id>
+        <sname>t1</sname>
+        <testdefid iterations="100">2</testdefid>
     </sessiondef>
 </root>

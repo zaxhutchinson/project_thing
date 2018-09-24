@@ -39,7 +39,7 @@ void ThingManager::LoadThings(std::string filename) {
 
         things.push_back(t);
 
-        ething = ething->NextSiblingElement("ething");
+        ething = ething->NextSiblingElement("thing");
     }
 }
 

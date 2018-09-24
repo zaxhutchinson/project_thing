@@ -14,6 +14,8 @@
 class Agent {
 public:
     Agent();
+
+    void Reset();
     /////////////////////////////////////////////////////////////////////////
     void Build();
     void AddMind(sptr<Mind> mind);
@@ -29,8 +31,8 @@ public:
     /////////////////////////////////////////////////////////////////////////
     void StartLearning();
     void EndLearning();
-    void StartFeedback(sptr<Thing> feedback);
-    void EndFeedback(int input_channel);
+    void GiveFeedback(sptr<Thing> feedback);
+    //void EndFeedback(int input_channel);
     /////////////////////////////////////////////////////////////////////////
     void GiveVisualInput(sptr<Thing> thing);
     void GiveAuralInput(sptr<Thing> thing);

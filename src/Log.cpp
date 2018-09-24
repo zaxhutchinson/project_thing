@@ -40,7 +40,7 @@ Log::~Log() {
 }
 
 void Log::Write(std::string str) {
-    main_out << str << std::endl;
+    main_out << str << std::endl << std::flush;
 }
 
 bool Log::GetDebug() { return debug; }
@@ -52,5 +52,5 @@ void Log::Debug(std::string msg) {
 }
 
 void Log::Run(std::string msg) {
-    run_out << msg << std::endl;
+    run_out << msg << std::endl << std::flush;
 }

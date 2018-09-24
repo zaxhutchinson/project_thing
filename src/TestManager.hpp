@@ -65,8 +65,8 @@ struct Session {
     bool StartResponse(int64_t time);
     bool EndResponse(int64_t time);
     int64_t ResponseDuration();
-    bool StartFeedback(int64_t time);
-    bool EndFeedback(int64_t time);
+    bool GiveFeedback(int64_t time);
+    //bool EndFeedback(int64_t time);
     bool EndTest(int64_t time);
     sptr<Thing> GetCurrentStimulus();
     sptr<Thing> GetCurrentFeedback();

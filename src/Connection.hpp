@@ -22,6 +22,7 @@
 #include<queue>
 #include<mutex>
 #include<functional>
+#include<iostream>
 
 #include"cereal/archives/binary.hpp"
 #include"cereal/types/memory.hpp"
@@ -59,6 +60,8 @@ public:
         int delay);
     Connection(const Connection& orig);
     virtual ~Connection();
+
+    void Reset();
 
     sptr<Neuron> Pre();
     sptr<Neuron> Post();

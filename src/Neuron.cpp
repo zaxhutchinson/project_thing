@@ -210,6 +210,8 @@ void Neuron::Update(int64_t time) {
     //cur_time++;
     pre_index = cur_index;
     cur_index = (cur_index+1)%data_size;
+
+    BackProp();
 }
 
 double Neuron::GetInternalNoise(int64_t time) {
@@ -267,22 +269,26 @@ void Neuron::SetDopamineStrength(double strength) {
 }
 
 void Neuron::BackProp() {
-    double total_input_strength = 0.0;
-    for(vec_sptr<Connection>::iterator it = input.begin();
-            it != input.end(); it++) {
-        total_input_strength += (*it)->Strength();
-    }
 
-    // Divide da and send to connections
-    for(vec_sptr<Connection>::iterator it = input.begin();
-            it != input.end(); it++) {
-        (*it)->SetDopamineStrength(
-            ((*it)->Strength() / total_input_strength) * dopamine->GetStrength()
-        );
-    }
+    if(dopamine->GetStrength() > 0.0 || dopamine->GetStrength() < 0.0) {
 
-    // Purge dopamine from neuron.
-    dopamine->SetStrength(0.0);
+        double total_input_strength = 0.0;
+        for(vec_sptr<Connection>::iterator it = input.begin();
+                it != input.end(); it++) {
+            total_input_strength += (*it)->Strength();
+        }
+
+        // Divide da and send to connections
+        for(vec_sptr<Connection>::iterator it = input.begin();
+                it != input.end(); it++) {
+            (*it)->SetDopamineStrength(
+                ((*it)->Strength() / total_input_strength) * dopamine->GetStrength()
+            );
+        }
+
+        // Purge dopamine from neuron.
+        dopamine->SetStrength(0.0);
+    }
 }
 
 void Neuron::STDP(int64_t time) {

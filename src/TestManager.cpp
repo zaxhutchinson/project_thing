@@ -74,16 +74,16 @@ bool Session::EndResponse(int64_t time) {
 int64_t Session::ResponseDuration() {
     return tests.front()->rduration;
 }
-bool Session::StartFeedback(int64_t time) {
-    if(time == tests.front()->fstart) {
+bool Session::GiveFeedback(int64_t time) {
+    if(time >= tests.front()->fstart && time < tests.front()->fstart+tests.front()->fduration) {
         return true;
     } else return false;
 }
-bool Session::EndFeedback(int64_t time) {
-    if(time == tests.front()->fstart+tests.front()->fduration) {
-        return true;
-    } else return false;
-}
+// bool Session::EndFeedback(int64_t time) {
+//     if(time == tests.front()->fstart+tests.front()->fduration) {
+//         return true;
+//     } else return false;
+// }
 bool Session::EndTest(int64_t time) {
     if(time == tests.front()->etime) {
         return true;

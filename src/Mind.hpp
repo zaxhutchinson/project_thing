@@ -34,6 +34,9 @@ public:
     Mind();
     Mind(const Mind& orig);
     virtual ~Mind();
+
+    void Reset();
+
     void AddRegion(vec_sptr<Neuron> region);
     void AddConnection(sptr<Connection> conn);
     void AddExInput(sptr<ExInput> exin);
