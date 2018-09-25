@@ -58,6 +58,7 @@ namespace config {
     extern double DELTA_TRACE_DECAY;
 
     // DOPAMINE
+    extern double DOPAMINE_WEIGHT;
     extern double DOPAMINE_DECAY;
     extern double DOPAMINE_MIN;
 

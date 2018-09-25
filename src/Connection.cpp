@@ -304,9 +304,7 @@ double Connection::Learn() {
                         config::DOPAMINE_DECAY*dopamine->GetStrength();
 
         // Only pass on decayed dopamine if it is greater than min strength
-        if(decayed_da>=config::DOPAMINE_MIN) {
-            pre.lock()->AddDopamineStrength(decayed_da);
-        }
+        pre.lock()->AddDopamineStrength(decayed_da);
         // Purge dopamine
         dopamine->SetStrength(0.0);
 

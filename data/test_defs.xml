@@ -35,4 +35,16 @@
         <fduration>10</fduration>
         <etime>5000</etime>
     </testdef>
+    <testdef>
+        <id>3</id>
+        <qname>thing2</qname>
+        <aname>thing3</aname>
+        <sstart>2000</sstart>
+        <sduration>999</sduration>
+        <rstart>3000</rstart>
+        <rduration>999</rduration>
+        <fstart>4000</fstart>
+        <fduration>10</fduration>
+        <etime>5000</etime>
+    </testdef>
 </root>

@@ -52,6 +52,7 @@ namespace config {
 
 
     // DOPAMINE
+    double DOPAMINE_WEIGHT;
     double DOPAMINE_DECAY;
     double DOPAMINE_MIN;
 }
@@ -95,6 +96,7 @@ bool config::LoadConfig(std::string filename) {
     SLOW_POTENTIATION_MOD = reader.GetReal("synapse","slow_potentiation_mod",2.0);
     DELTA_TRACE_DECAY = reader.GetReal("synapse","delta_trace_decay",0.001);
 
+    DOPAMINE_WEIGHT = reader.GetReal("dopamine","dopamine_weight",10.0);
     DOPAMINE_DECAY = reader.GetReal("dopamine","dopamine_decay",0.1);
     DOPAMINE_MIN = reader.GetReal("dopamine","dopamine_min",0.01);
 }
@@ -118,6 +120,10 @@ void config::PrintConfig() {
             << "STDP_DECAY: " << STDP_DECAY << std::endl
             << "MAX_DELAY: " << MAX_DELAY << std::endl;
 
+    std::cout << "\n*** DOPAMINE ***\n"
+            << "DOPAMINE WEIGHT: " << DOPAMINE_WEIGHT << std::endl
+            << "DOPAMINE DECAY: " << DOPAMINE_DECAY << std::endl
+            << "DOPAMINE MIN: " << DOPAMINE_MIN << std::endl;
 
     std::cout << "======================================================\n\n";
 

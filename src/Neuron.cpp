@@ -270,7 +270,7 @@ void Neuron::SetDopamineStrength(double strength) {
 
 void Neuron::BackProp() {
 
-    if(dopamine->GetStrength() > 0.0 || dopamine->GetStrength() < 0.0) {
+    if(dopamine->GetStrength() <= -config::DOPAMINE_MIN || dopamine->GetStrength() >= config::DOPAMINE_MIN) {
 
         double total_input_strength = 0.0;
         for(vec_sptr<Connection>::iterator it = input.begin();
@@ -286,9 +286,10 @@ void Neuron::BackProp() {
             );
         }
 
-        // Purge dopamine from neuron.
-        dopamine->SetStrength(0.0);
+        
     }
+    // Purge dopamine from neuron.
+    dopamine->SetStrength(0.0);
 }
 
 void Neuron::STDP(int64_t time) {

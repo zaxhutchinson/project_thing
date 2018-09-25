@@ -2,11 +2,11 @@ PROJECT THING: Started
 THING MANAGER: Things loaded
 TEST MANAGER: Tests loaded
 CMD LINE ARGS:
-  New: test1 0
-  SessionID: 2
+  New: test3 0
+  SessionID: 3
 BUILDER: Build Mind 000
 MAIN: Session set: t1
-MAIN: Directory created: /home/zax/Projects/ProjectThingOutput/recordings/test_011/t1
+MAIN: Directory created: /home/zax/Projects/ProjectThingOutput/recordings/test_014/t1
 MAIN: Run started
 MAIN: Session got
 MAIN: test run #0
@@ -27,7 +27,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.606411
+  Time: 4.709827
 MAIN: test run #1
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -46,7 +46,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.915326
+  Time: 5.010830
 MAIN: test run #2
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -65,7 +65,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.904363
+  Time: 4.006341
 MAIN: test run #3
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -84,7 +84,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 6.507199
+  Time: 4.108225
 MAIN: test run #4
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -103,7 +103,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.905500
+  Time: 4.004672
 MAIN: test run #5
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -122,7 +122,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.813397
+  Time: 4.306245
 MAIN: test run #6
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -141,7 +141,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.814791
+  Time: 4.007659
 MAIN: test run #7
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -160,7 +160,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.914048
+  Time: 3.910102
 MAIN: test run #8
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -179,7 +179,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.713481
+  Time: 3.904615
 MAIN: test run #9
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -198,7 +198,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.807344
+  Time: 4.005022
 MAIN: test run #10
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -217,7 +217,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.814259
+  Time: 3.906543
 MAIN: test run #11
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -236,7 +236,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.806920
+  Time: 4.003957
 MAIN: test run #12
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -255,7 +255,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.814255
+  Time: 3.904902
 MAIN: test run #13
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -274,7 +274,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.908758
+  Time: 3.907437
 MAIN: test run #14
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -293,7 +293,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.813543
+  Time: 3.907584
 MAIN: test run #15
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -312,7 +312,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.806596
+  Time: 4.104639
 MAIN: test run #16
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -331,7 +331,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.806499
+  Time: 3.908122
 MAIN: test run #17
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -350,7 +350,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.713462
+  Time: 3.906098
 MAIN: test run #18
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -369,7 +369,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.806432
+  Time: 4.210113
 MAIN: test run #19
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -388,7 +388,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.807974
+  Time: 4.111813
 MAIN: test run #20
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -407,7 +407,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.813440
+  Time: 3.904745
 MAIN: test run #21
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -426,7 +426,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.806021
+  Time: 3.810934
 MAIN: test run #22
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -445,7 +445,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.813774
+  Time: 3.910488
 MAIN: test run #23
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -464,7 +464,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.806534
+  Time: 3.913266
 MAIN: test run #24
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -483,7 +483,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.711950
+  Time: 3.905594
 MAIN: test run #25
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -502,7 +502,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.805975
+  Time: 3.913825
 MAIN: test run #26
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -521,7 +521,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.814075
+  Time: 3.905182
 MAIN: test run #27
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -540,7 +540,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.707859
+  Time: 3.908815
 MAIN: test run #28
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -559,7 +559,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.713421
+  Time: 4.105410
 MAIN: test run #29
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -578,7 +578,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.805401
+  Time: 4.215869
 MAIN: test run #30
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -597,7 +597,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.810097
+  Time: 4.909426
 MAIN: test run #31
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -616,7 +616,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.813599
+  Time: 3.905539
 MAIN: test run #32
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -635,7 +635,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.712653
+  Time: 3.906604
 MAIN: test run #33
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -654,7 +654,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.713400
+  Time: 3.906700
 MAIN: test run #34
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -673,7 +673,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.705532
+  Time: 3.904375
 MAIN: test run #35
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -692,7 +692,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.805187
+  Time: 4.213107
 MAIN: test run #36
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -711,7 +711,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.712219
+  Time: 3.907531
 MAIN: test run #37
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -730,7 +730,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.712833
+  Time: 3.912662
 MAIN: test run #38
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -749,7 +749,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.805485
+  Time: 3.904745
 MAIN: test run #39
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -768,7 +768,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.804491
+  Time: 3.911665
 MAIN: test run #40
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -787,7 +787,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.813792
+  Time: 3.912104
 MAIN: test run #41
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -806,7 +806,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.914224
+  Time: 3.914333
 MAIN: test run #42
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -825,7 +825,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.807434
+  Time: 4.003881
 MAIN: test run #43
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -844,7 +844,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.813428
+  Time: 3.904354
 MAIN: test run #44
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -863,7 +863,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.814119
+  Time: 3.907420
 MAIN: test run #45
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -882,7 +882,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 6.815337
+  Time: 3.905048
 MAIN: test run #46
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -901,7 +901,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 6.005414
+  Time: 3.910689
 MAIN: test run #47
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -920,7 +920,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.108827
+  Time: 3.905800
 MAIN: test run #48
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -939,7 +939,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.906638
+  Time: 4.004417
 MAIN: test run #49
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -958,7 +958,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.007343
+  Time: 3.908202
 MAIN: test run #50
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -977,7 +977,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.506678
+  Time: 4.013264
 MAIN: test run #51
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -996,7 +996,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.905440
+  Time: 3.906650
 MAIN: test run #52
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1015,7 +1015,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.906943
+  Time: 3.907899
 MAIN: test run #53
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1034,7 +1034,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.007873
+  Time: 3.910135
 MAIN: test run #54
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1053,7 +1053,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.906742
+  Time: 3.904666
 MAIN: test run #55
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1072,7 +1072,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.006998
+  Time: 3.907533
 MAIN: test run #56
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1091,7 +1091,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.007446
+  Time: 3.905846
 MAIN: test run #57
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1110,7 +1110,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.009003
+  Time: 4.311984
 MAIN: test run #58
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1129,7 +1129,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.006547
+  Time: 3.905613
 MAIN: test run #59
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1148,7 +1148,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.007885
+  Time: 3.906860
 MAIN: test run #60
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1167,7 +1167,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.007189
+  Time: 3.906316
 MAIN: test run #61
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1186,7 +1186,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.905978
+  Time: 3.907106
 MAIN: test run #62
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1205,7 +1205,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.009460
+  Time: 3.906056
 MAIN: test run #63
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1224,7 +1224,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.906375
+  Time: 3.908704
 MAIN: test run #64
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1243,7 +1243,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.906614
+  Time: 3.913127
 MAIN: test run #65
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1262,7 +1262,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.010286
+  Time: 3.913739
 MAIN: test run #66
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1281,7 +1281,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.906874
+  Time: 3.906244
 MAIN: test run #67
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1300,7 +1300,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.906347
+  Time: 3.814079
 MAIN: test run #68
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1319,7 +1319,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.906312
+  Time: 3.914962
 MAIN: test run #69
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1338,7 +1338,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.108399
+  Time: 4.008320
 MAIN: test run #70
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1347,7 +1347,6 @@ ELECTRODEGROUP: StartRecording - Exit
 SIM: StartAllRecordingElectrodes - Exit
 MAIN: electrode recorders started
 MAIN: recording started
-MAIN: sim thread started.
 MAIN: sim thread started.
 SIM: Starting main loop
 Time: 1000
@@ -1358,7 +1357,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.906331
+  Time: 4.008254
 MAIN: test run #71
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1377,7 +1376,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 6.116322
+  Time: 3.905759
 MAIN: test run #72
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1396,7 +1395,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 6.311980
+  Time: 3.913617
 MAIN: test run #73
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1415,7 +1414,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.905451
+  Time: 4.006226
 MAIN: test run #74
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1434,7 +1433,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.814206
+  Time: 3.914374
 MAIN: test run #75
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1453,7 +1452,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.813611
+  Time: 3.907494
 MAIN: test run #76
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1472,7 +1471,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.908394
+  Time: 3.905830
 MAIN: test run #77
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1491,7 +1490,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.905574
+  Time: 3.906048
 MAIN: test run #78
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1510,7 +1509,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.906663
+  Time: 3.912727
 MAIN: test run #79
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1529,7 +1528,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.905982
+  Time: 3.905349
 MAIN: test run #80
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1548,7 +1547,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.804751
+  Time: 3.908824
 MAIN: test run #81
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1567,7 +1566,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 6.614387
+  Time: 3.914177
 MAIN: test run #82
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1586,7 +1585,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 6.310954
+  Time: 3.905462
 MAIN: test run #83
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1605,7 +1604,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 5.008444
+  Time: 3.914564
 MAIN: test run #84
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1624,7 +1623,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.811402
+  Time: 4.006676
 MAIN: test run #85
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1643,7 +1642,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.711441
+  Time: 4.407633
 MAIN: test run #86
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1662,7 +1661,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.605887
+  Time: 4.907866
 MAIN: test run #87
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1681,7 +1680,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.606477
+  Time: 6.114710
 MAIN: test run #88
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1700,7 +1699,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.611168
+  Time: 4.406989
 MAIN: test run #89
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1719,7 +1718,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.609960
+  Time: 4.709924
 MAIN: test run #90
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1738,7 +1737,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.704825
+  Time: 4.811139
 MAIN: test run #91
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1757,7 +1756,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.611110
+  Time: 4.610075
 MAIN: test run #92
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1776,7 +1775,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.611582
+  Time: 5.008709
 MAIN: test run #93
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1795,7 +1794,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.711478
+  Time: 5.906191
 MAIN: test run #94
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1814,7 +1813,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.710742
+  Time: 5.809964
 MAIN: test run #95
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1833,7 +1832,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.607668
+  Time: 5.011390
 MAIN: test run #96
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1852,7 +1851,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.708637
+  Time: 4.610439
 MAIN: test run #97
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1871,7 +1870,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.711564
+  Time: 4.409177
 MAIN: test run #98
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1890,7 +1889,7 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.615257
+  Time: 4.307360
 MAIN: test run #99
 MAIN: starting eletrode recorders
 SIM: StartAllRecordingElectrodes - Enter
@@ -1909,6 +1908,6 @@ Time: 5000
 SIM: Main loop done
 MAIN: joining sim thread
 MAIN: Sim thread joined
-  Time: 4.711920
+  Time: 4.205231
 MAIN: run done
 MAIN: All done

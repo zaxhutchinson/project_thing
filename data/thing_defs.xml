@@ -15,9 +15,16 @@
     </thing>
     <thing>
         <name>thing2</name>
+        <detail>0.0</detail>
         <detail>1.0</detail>
-        <detail>0.75</detail>
-        <detail>0.5</detail>
-        <detail>0.25</detail>
+        <detail>0.0</detail>
+        <detail>1.0</detail>
+    </thing>
+    <thing>
+        <name>thing3</name>
+        <detail>1.0</detail>
+        <detail>0.0</detail>
+        <detail>1.0</detail>
+        <detail>0.0</detail>
     </thing>
 </root>

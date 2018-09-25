@@ -55,7 +55,7 @@ sptr<Mind> Builder::BuildMind000(long seed) {
     int size_pfc_in             = 35;
     int size_pfc_ii             = 5;
 
-    double pfc_pc_pc_cp         = 0.2;
+    double pfc_pc_pc_cp         = 0.1;  // 0.2;
     double pfc_pc_pc_w          = 20.0;
     double pfc_pc_in_cp         = 0.5;
     double pfc_pc_in_w          = 20.0;
@@ -269,6 +269,8 @@ sptr<Mind> Builder::BuildMind000(long seed) {
     mind->AddRegion(pfc_pc);
     mind->AddRegion(pfc_in);
     mind->AddRegion(pfc_ii);
+
+    //config::PrintConfig();
     //////////////////////////////////////////////////////////////
     // END return mind
     return mind;

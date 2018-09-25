@@ -14,4 +14,9 @@
         <sname>t1</sname>
         <testdefid iterations="100">2</testdefid>
     </sessiondef>
+    <sessiondef>
+        <id>3</id>
+        <sname>t1</sname>
+        <testdefid iterations="100">3</testdefid>
+    </sessiondef>
 </root>
