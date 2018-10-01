@@ -65,7 +65,7 @@ public:
     void Update(int64_t time, std::mt19937_64 & rng);
     void StartLearning();
     void EndLearning();
-    void ReleaseDopamine(int dopamine_channel, double strength);
+    void ReleaseDopamine(int dopamine_channel, DAStrength strength);
     void PurgeDopamine(int dopamine_channel);
 
     void CleanUp();

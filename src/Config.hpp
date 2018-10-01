@@ -62,6 +62,8 @@ namespace config {
     extern double DOPAMINE_DECAY;
     extern double DOPAMINE_MIN;
 
+    // TEST
+    extern double MAX_SPIKES;
 
     bool LoadConfig(std::string filename);
 

@@ -101,10 +101,11 @@ void Sim::RunSimulation(sptr<Comms> comms) {
             off_by = Thing::AbsDiff(response,session->GetCurrentFeedback());
 
             Log::Instance()->Run(response_norm->ToString());
+            Log::Instance()->Run(response->ToString());
             std::cout << "====================================================\n";
-            std::cout << "RESPONSE:  " << response->ToString() << std::endl;
-            std::cout << "FEEDBACK: " << feedback->ToString() << std::endl;
-            std::cout << "SIM DIFF: " << off_by->ToString() << std::endl;
+            std::cout << "RESPONSE:\n" << response->ToString() << std::endl;
+            std::cout << "FEEDBACK:\n" << feedback->ToString() << std::endl;
+            std::cout << "SIM DIFF:\n" << off_by->ToString() << std::endl;
             std::cout << "====================================================\n\n";
         } 
         

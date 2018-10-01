@@ -96,8 +96,8 @@ public:
     double TotalSpikeAge();
     bool Spiked();
 
-    void AddDopamineStrength(double strength);
-    void SetDopamineStrength(double strength);
+    void AddDopamineStrength(DAStrength strength);
+    void SetDopamineStrength(DAStrength strength);
     void BackProp();
 
     double X();

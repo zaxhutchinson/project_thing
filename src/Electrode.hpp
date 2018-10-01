@@ -48,7 +48,7 @@ public:
     bool Spike();
     int TimeLastSpike();
 
-    void GiveFeedback(double strength);
+    void GiveFeedback(DAStrength strength);
     
     void RecordNeuronData(int64_t time);
     void WriteNeuronData();

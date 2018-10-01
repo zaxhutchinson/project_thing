@@ -3,7 +3,7 @@
 
 CC=g++ # define the compiler to use
 TARGET=project_thing # define the name of the executable
-CFLAGS= -c -std=c++14 -O3 -g
+CFLAGS= -c -std=c++14 -g
 LFLAGS= -lm -lsfml-graphics -lsfml-window -lsfml-system -pthread -fopenmp
 SRCDIR = src
 OBJDIR = obj

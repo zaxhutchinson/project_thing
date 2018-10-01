@@ -63,7 +63,8 @@ void Connection::Reset() {
     this->fast_potentiation = 0.0;
     this->medium_potentiation = 0.0;
     this->slow_potentiation = 0.0;
-    this->delta_trace=0.0;
+    this->delta_trace_positive=0.0;
+    this->delta_trace_negative=0.0;
 }
 
 sptr<Neuron> Connection::Pre() { return pre.lock(); }
@@ -103,17 +104,8 @@ void Connection::PreSTANDARD_E(int64_t time) {
         }
 
         if(learning) {
-            double delta = 0.0;
             if(diff<30.0) {
-                delta = -12.0 * std::exp(-diff/30.0); //-0.12
-            }
-            delta_trace+=delta;
-
-            if(delta < -100.0 || delta > 1000.0) {
-                std::cout << "***PRE STANDARD E***\n";
-                std::cout << "DELTA LARGE: " << delta << std::endl;
-                std::cout << "LAST PRE:    " << last_pre_spike << std::endl;
-                std::cout << "LAST POST:   " << last_post_spike << std::endl;
+                delta_trace_negative += -1.0 * std::exp(-diff/30.0); //-0.12
             }
         }
     }
@@ -140,17 +132,8 @@ void Connection::PostSTANDARD_E(int64_t time) {
             }
         }
         if(learning) {
-            double delta = 0.0;
             if(diff<30.0) {
-                delta = 10.0 * std::exp(-diff/30.0); //0.1;
-            }
-            delta_trace+=delta;
-
-            if(delta < -100.0 || delta > 1000.0) {
-                std::cout << "***POST STANDARD E***\n";
-                std::cout << "DELTA LARGE: " << delta << std::endl;
-                std::cout << "LAST PRE:    " << last_pre_spike << std::endl;
-                std::cout << "LAST POST:   " << last_post_spike << std::endl;
+                delta_trace_positive += 1.0 * std::exp(-diff/30.0); //0.1;
             }
         }
     }
@@ -178,21 +161,14 @@ void Connection::PreZAX_2018_I(int64_t time) {
             }
         }
         if(learning) {
-            double delta = 0.0;
+            
             if(diff<20.0) {
-                delta = 10.0 * std::exp(-diff/20.0);
+                delta_trace_positive += 1.0 * std::exp(-diff/20.0);
             }
             else if(diff<100.0) {
-                delta = -2.5 * std::exp(-diff/100.0);
+                delta_trace_negative += -0.25 * std::exp(-diff/100.0);
             }
-            delta_trace+=delta;
-
-            if(delta < -100.0 || delta > 1000.0) {
-                std::cout << "***PRE ZAX I***\n";
-                std::cout << "DELTA LARGE: " << delta << std::endl;
-                std::cout << "LAST PRE:    " << last_pre_spike << std::endl;
-                std::cout << "LAST POST:   " << last_post_spike << std::endl;
-            }
+            
         }
     }
 }
@@ -218,21 +194,12 @@ void Connection::PostZAX_2018_I(int64_t time) {
             }
         }
         if(learning) {
-            double delta=0.0;
             if(diff<20.0) {
-                delta = 10.0 * std::exp(-diff/20.0);
+                delta_trace_positive += 1.0 * std::exp(-diff/20.0);
                 
             }
             else if(diff<100.0) {
-                delta = -2.5 * std::exp(-diff/100.0);
-            }
-            delta_trace+=delta;
-
-            if(delta < -100.0 || delta > 1000.0) {
-                std::cout << "***POST ZAX I***\n";
-                std::cout << "DELTA LARGE: " << delta << std::endl;
-                std::cout << "LAST PRE:    " << last_pre_spike << std::endl;
-                std::cout << "LAST POST:   " << last_post_spike << std::endl;
+                delta_trace_negative += -0.25 * std::exp(-diff/100.0);
             }
         }
     }
@@ -270,7 +237,7 @@ void Connection::AddDopamine(sptr<Dopamine> da) {
 sptr<Dopamine> Connection::GetDopamine() {
     return dopamine;
 }
-void Connection::SetDopamineStrength(double strength) {
+void Connection::SetDopamineStrength(DAStrength strength) {
     dopamine->SetStrength(strength);
 }
 void Connection::SetCanLearn(bool learn) {
@@ -285,31 +252,40 @@ void Connection::SetPot(bool pot) {
     this->pot = pot;
 }
 double Connection::Learn() {
-    double change=0.0;
-    if(dopamine->GetStrength() < 0.0 || dopamine->GetStrength() > 0.0) {
+    double change_pos=0.0;
+    double change_neg=0.0;
+    DAStrength da_str = dopamine->GetStrength();
+    if(da_str.high > 0.0 || da_str.low > 0.0) {
         
         if(can_learn) {
-            change = (delta_trace*dopamine->GetStrength());
+            change_pos = (delta_trace_positive*-da_str.high) +
+                            (delta_trace_negative*da_str.high);
+            change_neg = (delta_trace_positive*da_str.low) +
+                            (delta_trace_negative*-da_str.low);
 
-            strength+=change;
+            strength+=(change_pos+change_neg);
             if(strength<min_strength) strength=min_strength;
 
         }
 
-        double decayed_da = dopamine->GetStrength() - 
-                        config::DOPAMINE_DECAY*dopamine->GetStrength();
+        da_str.high = da_str.high - config::DOPAMINE_DECAY*da_str.high;
+        da_str.low = da_str.low - config::DOPAMINE_DECAY*da_str.low;
+
 
         // Only pass on decayed dopamine if it is greater than min strength
-        pre.lock()->AddDopamineStrength(decayed_da);
+        pre.lock()->AddDopamineStrength(da_str);
         // Purge dopamine
-        dopamine->SetStrength(0.0);
+        dopamine->SetStrength(0.0,0.0);
 
         
     }
 
-    delta_trace = delta_trace - config::DELTA_TRACE_DECAY*delta_trace;
+    delta_trace_positive = delta_trace_positive - 
+                config::DELTA_TRACE_DECAY*delta_trace_positive;
+    delta_trace_negative = delta_trace_negative -
+                config::DELTA_TRACE_DECAY*delta_trace_negative;
 
-    return change;
+    return change_pos+change_neg;
     
 }
 

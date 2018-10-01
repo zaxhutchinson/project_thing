@@ -55,6 +55,9 @@ namespace config {
     double DOPAMINE_WEIGHT;
     double DOPAMINE_DECAY;
     double DOPAMINE_MIN;
+
+    // TEST
+    double MAX_SPIKES;
 }
 
 bool config::LoadConfig(std::string filename) {
@@ -99,6 +102,8 @@ bool config::LoadConfig(std::string filename) {
     DOPAMINE_WEIGHT = reader.GetReal("dopamine","dopamine_weight",10.0);
     DOPAMINE_DECAY = reader.GetReal("dopamine","dopamine_decay",0.1);
     DOPAMINE_MIN = reader.GetReal("dopamine","dopamine_min",0.01);
+
+    MAX_SPIKES = reader.GetReal("test","max_spikes",50.0);
 }
 
 void config::PrintConfig() {

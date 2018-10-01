@@ -49,11 +49,11 @@ public:
     /////////////////////////////////////////////////////////////////////////
     template<class Archive>
     void save(Archive & ar) const {
-        ar(x,y,mind,eyes,ears);
+        ar(x,y,mind,eyes,ears,mouths);
     }
     template<class Archive>
     void load(Archive & ar) {
-        ar(x,y,mind,eyes,ears);
+        ar(x,y,mind,eyes,ears,mouths);
 
     }
 private:

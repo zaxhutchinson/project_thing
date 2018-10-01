@@ -45,9 +45,14 @@ void Agent::EndLearning() {
     mind->EndLearning();
 }
 void Agent::GiveFeedback(sptr<Thing> feedback) {
-    //mind->ReleaseDopamine(input_channel, off_by);
+    
+    
+
     for(int i = 0; i < mouths.size() && i < feedback->NumDetails(); i++) {
-        mouths[i]->GiveFeedback(feedback->GetDetail(i));
+        DAStrength das;
+        if(feedback->GetDetail(i)>0) das.high=feedback->GetDetail(i);
+        else das.low = (-feedback->GetDetail(i));
+        mouths[i]->GiveFeedback(das);
     }
 }
 // void Agent::EndFeedback(int input_channel) {

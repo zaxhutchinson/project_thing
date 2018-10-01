@@ -82,7 +82,7 @@ public:
 
     void AddDopamine(sptr<Dopamine> da);
     sptr<Dopamine> GetDopamine();
-    void SetDopamineStrength(double strength);
+    void SetDopamineStrength(DAStrength strength);
 
     void SetCanLearn(bool learn);
     void SetLearning(bool learn);
@@ -148,7 +148,8 @@ private:
     bool learning;
     bool pot;
 
-    double delta_trace;
+    double delta_trace_positive;
+    double delta_trace_negative;
 };
 
 #endif /* CONNECTION_HPP */

@@ -1,15 +1,21 @@
 #include"Dopamine.hpp"
 
 Dopamine::Dopamine() {
-    strength=0.0;
+    strength.high=0.0;
+    strength.low=0.0;
 }
 
-void Dopamine::SetStrength(double strength) {
+void Dopamine::SetStrength(DAStrength strength) {
     this->strength = strength;
 }
-double Dopamine::GetStrength() {
+void Dopamine::SetStrength(double high, double low) {
+    this->strength.high = high;
+    this->strength.low = low;
+}
+DAStrength Dopamine::GetStrength() {
     return strength;
 }
-void Dopamine::AddStrength(double strength) {
-    this->strength += strength;
+void Dopamine::AddStrength(DAStrength strength) {
+    this->strength.high += strength.high;
+    this->strength.low += strength.low;
 }

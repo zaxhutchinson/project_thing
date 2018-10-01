@@ -261,16 +261,17 @@ double Neuron::TotalSpikeAge() {
 
 bool Neuron::Spiked() { return spiked; }
 
-void Neuron::AddDopamineStrength(double strength) {
+void Neuron::AddDopamineStrength(DAStrength strength) {
     dopamine->AddStrength(strength);
 }
-void Neuron::SetDopamineStrength(double strength) {
+void Neuron::SetDopamineStrength(DAStrength strength) {
     dopamine->SetStrength(strength);
 }
 
 void Neuron::BackProp() {
+    DAStrength da_str = dopamine->GetStrength();
 
-    if(dopamine->GetStrength() <= -config::DOPAMINE_MIN || dopamine->GetStrength() >= config::DOPAMINE_MIN) {
+    if(da_str.high >= config::DOPAMINE_MIN || da_str.low >= config::DOPAMINE_MIN) {
 
         double total_input_strength = 0.0;
         for(vec_sptr<Connection>::iterator it = input.begin();
@@ -281,15 +282,18 @@ void Neuron::BackProp() {
         // Divide da and send to connections
         for(vec_sptr<Connection>::iterator it = input.begin();
                 it != input.end(); it++) {
-            (*it)->SetDopamineStrength(
-                ((*it)->Strength() / total_input_strength) * dopamine->GetStrength()
-            );
+            
+            DAStrength das;
+            das.high= ((*it)->Strength() / total_input_strength) * da_str.high;
+            das.low = ((*it)->Strength() / total_input_strength) * da_str.low;
+
+            (*it)->SetDopamineStrength(das);
         }
 
         
     }
     // Purge dopamine from neuron.
-    dopamine->SetStrength(0.0);
+    dopamine->SetStrength(0.0,0.0);
 }
 
 void Neuron::STDP(int64_t time) {

@@ -5,6 +5,7 @@
 #include<iostream>
 
 #include"zaxlib.hpp"
+#include"Config.hpp"
 
 class Thing {
 public:

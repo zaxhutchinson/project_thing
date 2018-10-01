@@ -63,7 +63,7 @@ bool Electrode::Spike() {
     return neuron.lock()->Spiked();
 }
 
-void Electrode::GiveFeedback(double strength) {
+void Electrode::GiveFeedback(DAStrength strength) {
     neuron.lock()->AddDopamineStrength(strength);
 }
 

@@ -52,9 +52,9 @@ sptr<Thing> Thing::NormalizeDetail() {
 sptr<Thing> Thing::AbsDiff(sptr<Thing> t1, sptr<Thing> t2) {
     sptr<Thing> diff = std::make_shared<Thing>("diff",t2->NumDetails());
     for(int i = 0; i < diff->NumDetails(); i++) {
-        double d = 100.0 * t2->GetDetail(i);
+        double d =  config::MAX_SPIKES * t2->GetDetail(i);
         double offby = t1->GetDetail(i) - d;
-        diff->SetDetail(i, offby / 100.0);
+        diff->SetDetail(i, offby / config::MAX_SPIKES);
     }
     return diff;
 
@@ -68,7 +68,10 @@ sptr<Thing> Thing::AbsDiff(sptr<Thing> t1, sptr<Thing> t2) {
 std::string Thing::ToString() {
     std::string str("");
     for(int i = 0; i < num_details; i++) {
-        str += "\n\t" + std::to_string(details[i]);
+        if(!std::isnan(details[i]))
+            str += "\t" + std::to_string(details[i]) + "\n";
+        else
+            str += "\tNAN\n";
     }
     return str;
 }

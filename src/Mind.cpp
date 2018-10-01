@@ -133,13 +133,13 @@ void Mind::EndLearning() {
         conns[i]->SetLearning(false);
     }
 }
-void Mind::ReleaseDopamine(int dopamine_channel, double strength) {
+void Mind::ReleaseDopamine(int dopamine_channel, DAStrength strength) {
     sptr<Dopamine> da = GetDopamineChannel(dopamine_channel);
     da->SetStrength(strength);
 }
 void Mind::PurgeDopamine(int dopamine_channel) {
     sptr<Dopamine> da = GetDopamineChannel(dopamine_channel);
-    da->SetStrength(0.0);
+    da->SetStrength(0.0,0.0);
 }
 
 void Mind::CleanUp() {

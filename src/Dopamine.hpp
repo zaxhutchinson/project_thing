@@ -5,12 +5,27 @@
 
 #include"zaxlib.hpp"
 
+struct DAStrength {
+    double high=0.0;
+    double low=0.0;
+
+    template<class Archive>
+    void save(Archive & ar) const {
+        ar(high,low);
+    }
+    template<class Archive>
+    void load(Archive & ar) {
+        ar(high,low);
+    }
+};
+
 class Dopamine {
 public:
     Dopamine();
-    void SetStrength(double strength);
-    double GetStrength();
-    void AddStrength(double strength);
+    void SetStrength(DAStrength strength);
+    void SetStrength(double high, double low);
+    DAStrength GetStrength();
+    void AddStrength(DAStrength strength);
 
     template<class Archive>
     void save(Archive & ar) const {
@@ -21,7 +36,7 @@ public:
         ar(strength);
     }
 private:
-    double strength;
+    DAStrength strength;
 };
 
 #endif
