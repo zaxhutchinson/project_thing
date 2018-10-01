@@ -17,6 +17,35 @@
     <sessiondef>
         <id>3</id>
         <sname>t1</sname>
-        <testdefid iterations="100">3</testdefid>
+        <testdefid iterations="50">3</testdefid>
+    </sessiondef>
+    <sessiondef>
+        <id>4</id>
+        <sname>t1</sname>
+        <testdefid iterations="100">4</testdefid>
+    </sessiondef>
+    <sessiondef>
+        <id>5</id>
+        <sname>t1</sname>
+        <testdefid iterations="10">5</testdefid>
+        <testdefid iterations="10">6</testdefid>
+        <testdefid iterations="10">5</testdefid>
+        <testdefid iterations="10">6</testdefid>
+        <testdefid iterations="10">5</testdefid>
+        <testdefid iterations="10">6</testdefid>
+        <testdefid iterations="10">5</testdefid>
+        <testdefid iterations="10">6</testdefid>
+        <testdefid iterations="10">5</testdefid>
+        <testdefid iterations="10">6</testdefid>
+        <testdefid iterations="10">5</testdefid>
+        <testdefid iterations="10">6</testdefid>
+        <testdefid iterations="10">5</testdefid>
+        <testdefid iterations="10">6</testdefid>
+        <testdefid iterations="10">5</testdefid>
+        <testdefid iterations="10">6</testdefid>
+        <testdefid iterations="10">5</testdefid>
+        <testdefid iterations="10">6</testdefid>
+        <testdefid iterations="10">5</testdefid>
+        <testdefid iterations="10">6</testdefid>
     </sessiondef>
 </root>

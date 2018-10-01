@@ -23,7 +23,7 @@ void ThingManager::LoadThings(std::string filename) {
 
         tinyxml2::XMLElement * ename = ething->FirstChildElement("name");
         
-        sptr<Thing> t = std::make_shared<Thing>(ename->GetText());
+        sptr<Thing> t = std::make_shared<Thing>(ename->GetText(),0);
 
         tinyxml2::XMLElement * edetail = ething->FirstChildElement("detail");
 

@@ -55,8 +55,8 @@ sptr<Mind> Builder::BuildMind000(long seed) {
     int size_pfc_in             = 35;
     int size_pfc_ii             = 5;
 
-    double pfc_pc_pc_cp         = 0.1;  // 0.2;
-    double pfc_pc_pc_w          = 20.0;
+    double pfc_pc_pc_cp         = 0.2;
+    double pfc_pc_pc_w          = 30.0;
     double pfc_pc_in_cp         = 0.5;
     double pfc_pc_in_w          = 20.0;
     double pfc_in_pc_cp         = 0.5;
@@ -114,7 +114,7 @@ sptr<Mind> Builder::BuildMind000(long seed) {
                     
                     sptr<Connection> conn = std::make_shared<Connection>(
                         pfc_pc_pc_w, std::abs(pfc_pc_pc_w), -std::abs(pfc_pc_pc_w),
-                        true, true,
+                        true, false,
                         pre, post, e_type, Neuron::Distance(pre,post)/10.0
                     );
                     pre->AddOutputConnection(conn);
@@ -123,7 +123,7 @@ sptr<Mind> Builder::BuildMind000(long seed) {
                 } else {
                     sptr<Connection> conn = std::make_shared<Connection>(
                         pfc_pc_pc_w, 0.0, -std::abs(pfc_pc_pc_w),
-                        true, true,
+                        true, false,
                         pre, post, e_type, Neuron::Distance(pre,post)/10.0
                     );
                     pre->AddOutputConnection(conn);

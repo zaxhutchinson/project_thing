@@ -105,7 +105,7 @@ void Connection::PreSTANDARD_E(int64_t time) {
         if(learning) {
             double delta = 0.0;
             if(diff<30.0) {
-                delta = -1.2 * std::exp(-diff/30.0);
+                delta = -12.0 * std::exp(-diff/30.0); //-0.12
             }
             delta_trace+=delta;
 
@@ -142,7 +142,7 @@ void Connection::PostSTANDARD_E(int64_t time) {
         if(learning) {
             double delta = 0.0;
             if(diff<30.0) {
-                delta = 1.0 * std::exp(-diff/30.0);
+                delta = 10.0 * std::exp(-diff/30.0); //0.1;
             }
             delta_trace+=delta;
 
@@ -180,10 +180,10 @@ void Connection::PreZAX_2018_I(int64_t time) {
         if(learning) {
             double delta = 0.0;
             if(diff<20.0) {
-                delta = 0.1 * std::exp(-diff/20.0);
+                delta = 10.0 * std::exp(-diff/20.0);
             }
             else if(diff<100.0) {
-                delta = -0.025 * std::exp(-diff/100.0);
+                delta = -2.5 * std::exp(-diff/100.0);
             }
             delta_trace+=delta;
 
@@ -220,11 +220,11 @@ void Connection::PostZAX_2018_I(int64_t time) {
         if(learning) {
             double delta=0.0;
             if(diff<20.0) {
-                delta = 0.1 * std::exp(-diff/20.0);
+                delta = 10.0 * std::exp(-diff/20.0);
                 
             }
             else if(diff<100.0) {
-                delta = -0.025 * std::exp(-diff/100.0);
+                delta = -2.5 * std::exp(-diff/100.0);
             }
             delta_trace+=delta;
 
@@ -290,14 +290,10 @@ double Connection::Learn() {
         
         if(can_learn) {
             change = (delta_trace*dopamine->GetStrength());
-            // if(change > 1000.0 || change < -1000.0) {
-            //     std::cout << "\tLARGE CHAGE: " << change << "\n"
-            //             << "\tDELTA TRACE: " << delta_trace << "\n"
-            //             << "\tDA STRENGTH: " << dopamine->GetStrength() << "\n";
-            // }
+
             strength+=change;
             if(strength<min_strength) strength=min_strength;
-            //delta_trace=0.0;
+
         }
 
         double decayed_da = dopamine->GetStrength() - 

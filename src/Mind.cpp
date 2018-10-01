@@ -119,8 +119,8 @@ void Mind::Update(int64_t time, std::mt19937_64 & rng) {
 
         change+=(*it)->Learn();
     }
-    if(change != 0.0)
-        std::cout << "CHANGE: " << change << std::endl;
+    // if(change != 0.0)
+    //     std::cout << "CHANGE: " << change << std::endl;
 
 }
 void Mind::StartLearning() {

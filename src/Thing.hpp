@@ -2,6 +2,7 @@
 #define THING_HPP
 
 #include<limits>
+#include<iostream>
 
 #include"zaxlib.hpp"
 

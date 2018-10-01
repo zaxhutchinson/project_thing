@@ -70,6 +70,7 @@ void Sim::RunSimulation(sptr<Comms> comms) {
     Log::Instance()->Write("SIM: Starting main loop");
 
     sptr<Thing> response = nullptr;
+    sptr<Thing> feedback = nullptr;
     sptr<Thing> response_norm = nullptr;
     sptr<Thing> off_by = nullptr;
 
@@ -95,14 +96,15 @@ void Sim::RunSimulation(sptr<Comms> comms) {
             agent->PrepareResponse(time,session->ResponseDuration());
         } else if(session->EndResponse(time)) {
             response = agent->GetRawResponse();
+            feedback = session->GetCurrentFeedback();
             response_norm = agent->GetNormalizedResponse();
-            off_by = Thing::AbsDiff(response_norm,session->GetCurrentFeedback());
+            off_by = Thing::AbsDiff(response,session->GetCurrentFeedback());
 
             Log::Instance()->Run(response_norm->ToString());
             std::cout << "====================================================\n";
             std::cout << "RESPONSE:  " << response->ToString() << std::endl;
-            std::cout << "NORM RESP: " << response_norm->ToString() << std::endl;
-            std::cout << "SIM offby: " << off_by->ToString() << std::endl;
+            std::cout << "FEEDBACK: " << feedback->ToString() << std::endl;
+            std::cout << "SIM DIFF: " << off_by->ToString() << std::endl;
             std::cout << "====================================================\n\n";
         } 
         

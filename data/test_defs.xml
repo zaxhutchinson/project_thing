@@ -47,4 +47,40 @@
         <fduration>10</fduration>
         <etime>5000</etime>
     </testdef>
+    <testdef>
+        <id>4</id>
+        <qname>thing0</qname>
+        <aname>thing4</aname>
+        <sstart>2000</sstart>
+        <sduration>999</sduration>
+        <rstart>3000</rstart>
+        <rduration>999</rduration>
+        <fstart>4000</fstart>
+        <fduration>1</fduration>
+        <etime>4500</etime>
+    </testdef>
+    <testdef>
+        <id>5</id>
+        <qname>thing0</qname>
+        <aname>thing1</aname>
+        <sstart>2000</sstart>
+        <sduration>999</sduration>
+        <rstart>3000</rstart>
+        <rduration>999</rduration>
+        <fstart>4000</fstart>
+        <fduration>1</fduration>
+        <etime>4500</etime>
+    </testdef>
+    <testdef>
+        <id>6</id>
+        <qname>thing1</qname>
+        <aname>thing0</aname>
+        <sstart>2000</sstart>
+        <sduration>999</sduration>
+        <rstart>3000</rstart>
+        <rduration>999</rduration>
+        <fstart>4000</fstart>
+        <fduration>1</fduration>
+        <etime>4500</etime>
+    </testdef>
 </root>

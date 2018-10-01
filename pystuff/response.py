@@ -29,4 +29,6 @@ plt.plot(r2)
 plt.plot(r3)
 plt.plot(r4)
 
+plt.xlabel("Run")
+plt.ylabel("Output")
 plt.show()
