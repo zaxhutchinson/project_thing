@@ -105,7 +105,7 @@ void Connection::PreSTANDARD_E(int64_t time) {
 
         if(learning) {
             if(diff<30.0) {
-                delta_trace_negative += -1.0 * std::exp(-diff/30.0); //-0.12
+                delta_trace_negative += -10.0 * std::exp(-diff/30.0); //-0.12
             }
         }
     }
@@ -133,7 +133,7 @@ void Connection::PostSTANDARD_E(int64_t time) {
         }
         if(learning) {
             if(diff<30.0) {
-                delta_trace_positive += 1.0 * std::exp(-diff/30.0); //0.1;
+                delta_trace_positive += 10.0 * std::exp(-diff/30.0); //0.1;
             }
         }
     }
@@ -163,10 +163,10 @@ void Connection::PreZAX_2018_I(int64_t time) {
         if(learning) {
             
             if(diff<20.0) {
-                delta_trace_positive += 1.0 * std::exp(-diff/20.0);
+                delta_trace_positive += 10.0 * std::exp(-diff/20.0);
             }
             else if(diff<100.0) {
-                delta_trace_negative += -0.25 * std::exp(-diff/100.0);
+                delta_trace_negative += -2.5 * std::exp(-diff/100.0);
             }
             
         }
@@ -195,11 +195,11 @@ void Connection::PostZAX_2018_I(int64_t time) {
         }
         if(learning) {
             if(diff<20.0) {
-                delta_trace_positive += 1.0 * std::exp(-diff/20.0);
+                delta_trace_positive += 10.0 * std::exp(-diff/20.0);
                 
             }
             else if(diff<100.0) {
-                delta_trace_negative += -0.25 * std::exp(-diff/100.0);
+                delta_trace_negative += -2.5 * std::exp(-diff/100.0);
             }
         }
     }
