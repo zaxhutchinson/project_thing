@@ -56,15 +56,15 @@ sptr<Mind> Builder::BuildMind000(long seed) {
     int size_pfc_ii             = 5;
 
     double pfc_pc_pc_cp         = 0.2;
-    double pfc_pc_pc_w          = 50.0;
+    double pfc_pc_pc_w          = 100.0;
     double pfc_pc_in_cp         = 0.5;
     double pfc_pc_in_w          = 20.0;
     double pfc_in_pc_cp         = 0.5;
-    double pfc_in_pc_w          = -20.0;
+    double pfc_in_pc_w          = -40.0;
     double pfc_pc_ii_cp         = 0.5;
     double pfc_pc_ii_w          = 20.0;
     double pfc_ii_in_cp         = 0.5;
-    double pfc_ii_in_w          = -20.0;
+    double pfc_ii_in_w          = -40.0;
 
     double max_conn_dist        = 50.0;
 
