@@ -5,11 +5,11 @@
         <aname>thing0</aname>
         <sstart>2000</sstart>
         <sduration>999</sduration>
-        <rstart>3000</rstart>
+        <rstart>2000</rstart>
         <rduration>999</rduration>
-        <fstart>4000</fstart>
-        <fduration>10</fduration>
-        <etime>5000</etime>
+        <fstart>3000</fstart>
+        <fduration>1</fduration>
+        <etime>3001</etime>
     </testdef>
     <testdef>
         <id>1</id>
@@ -65,11 +65,11 @@
         <aname>thing1</aname>
         <sstart>2000</sstart>
         <sduration>999</sduration>
-        <rstart>3000</rstart>
+        <rstart>2000</rstart>
         <rduration>999</rduration>
-        <fstart>4000</fstart>
+        <fstart>3000</fstart>
         <fduration>1</fduration>
-        <etime>4500</etime>
+        <etime>3001</etime>
     </testdef>
     <testdef>
         <id>6</id>
@@ -77,10 +77,35 @@
         <aname>thing0</aname>
         <sstart>2000</sstart>
         <sduration>999</sduration>
-        <rstart>3000</rstart>
+        <rstart>2000</rstart>
         <rduration>999</rduration>
-        <fstart>4000</fstart>
+        <fstart>3000</fstart>
         <fduration>1</fduration>
-        <etime>4500</etime>
+        <etime>3001</etime>
+    </testdef>
+
+    <testdef>
+        <id>7</id>
+        <qname>thingQ1</qname>
+        <aname>thingA1</aname>
+        <sstart>2000</sstart>
+        <sduration>999</sduration>
+        <rstart>2000</rstart>
+        <rduration>999</rduration>
+        <fstart>3000</fstart>
+        <fduration>1</fduration>
+        <etime>3001</etime>
+    </testdef>
+    <testdef>
+        <id>8</id>
+        <qname>thingQ2</qname>
+        <aname>thingA2</aname>
+        <sstart>2000</sstart>
+        <sduration>999</sduration>
+        <rstart>2000</rstart>
+        <rduration>999</rduration>
+        <fstart>3000</fstart>
+        <fduration>1</fduration>
+        <etime>3001</etime>
     </testdef>
 </root>

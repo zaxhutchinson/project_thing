@@ -32,6 +32,7 @@ public:
     virtual ~Builder();
 
     sptr<Mind> BuildMind000(long seed);
+    sptr<Mind> BuildMind001(long seed);
 
 
 

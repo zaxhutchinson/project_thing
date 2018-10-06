@@ -35,7 +35,7 @@ public:
     Sim(const Sim& orig);
     virtual ~Sim();
 
-    void BuildAgent(int sim_id);
+    bool BuildAgent(int sim_id);
 
     void RunSimulation(sptr<Comms> comms);
 

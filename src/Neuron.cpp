@@ -211,7 +211,7 @@ void Neuron::Update(int64_t time) {
     pre_index = cur_index;
     cur_index = (cur_index+1)%data_size;
 
-    BackProp();
+    //BackProp();
 }
 
 double Neuron::GetInternalNoise(int64_t time) {
@@ -264,6 +264,12 @@ bool Neuron::Spiked() { return spiked; }
 void Neuron::AddDopamineStrength(DAStrength strength) {
     dopamine->AddStrength(strength);
 }
+void Neuron::AddDopamineStrengthHigh(double h) {
+    dopamine->AddStrengthHigh(h);
+}
+void Neuron::AddDopamineStrengthLow(double l) {
+    dopamine->AddStrengthLow(l);
+}
 void Neuron::SetDopamineStrength(DAStrength strength) {
     dopamine->SetStrength(strength);
 }
@@ -279,17 +285,36 @@ void Neuron::BackProp() {
             total_input_strength += (*it)->Strength();
         }
 
+        da_str.high = da_str.high - (config::DOPAMINE_DECAY * da_str.high);
+        da_str.low = da_str.low - (config::DOPAMINE_DECAY * da_str.low);
+
         // Divide da and send to connections
         for(vec_sptr<Connection>::iterator it = input.begin();
                 it != input.end(); it++) {
             
-            DAStrength das;
-            das.high= ((*it)->Strength() / total_input_strength) * da_str.high;
-            das.low = ((*it)->Strength() / total_input_strength) * da_str.low;
+            if(da_str.high >= config::DOPAMINE_MIN) {
+                double h = ((*it)->Strength() / total_input_strength) * da_str.high;
+                (*it)->SetDopamineStrengthHigh(h);
+            }
+            if(da_str.low >= config::DOPAMINE_MIN) {
+                double l = ((*it)->Strength() / total_input_strength) * da_str.low;
+                (*it)->SetDopamineStrengthLow(l);
+            }
+            
+            // DAStrength das;
+            // das.high= ((*it)->Strength() / total_input_strength) * da_str.high;
+            // das.low = ((*it)->Strength() / total_input_strength) * da_str.low;
 
-            (*it)->SetDopamineStrength(das);
+            // //h += das.high;
+            // //l += das.low;
+
+            // (*it)->SetDopamineStrength(das);
         }
 
+        // if(std::abs(da_str.high-h)>0.001)
+        //     std::cout << "HIGH OFF: " << da_str.high-h << std::endl;
+        // if(std::abs(da_str.low-l)>0.001)
+        //     std::cout << "LOW OFF : " << da_str.low-l << std::endl;
         
     }
     // Purge dopamine from neuron.

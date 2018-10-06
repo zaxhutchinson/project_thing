@@ -34,7 +34,7 @@ Sim::Sim(const Sim& orig) {
 Sim::~Sim() {
 }
 
-void Sim::BuildAgent(int sim_id) {
+bool Sim::BuildAgent(int sim_id) {
     agent = std::make_shared<Agent>();
     
     // Build and Add Mind
@@ -42,25 +42,35 @@ void Sim::BuildAgent(int sim_id) {
     switch(sim_id) {
         case 0:
             mind = Builder::Instance()->BuildMind000(rng()); break;
+        case 1:
+            mind = Builder::Instance()->BuildMind001(rng()); break;
 
     }
-    agent->AddMind(mind);
 
-    // Electrode Group in slot 0 should always be the mouth.
-    // Add the mind's electrodes in eg to agent as mouth.
-    // Hacky code.
-    sptr<ElectrodeGroup> eg = mind->GetElectrodeGroup(0);
-    for(vec_sptr<Electrode>::iterator it = eg->electrodes.begin();
-            it != eg->electrodes.end(); it++) {
-        agent->AddMouth(*it);
+    if(mind==nullptr) {
+        return false;
     }
+    else {
 
-    vec_sptr<ExInput> & exins = mind->GetInputs();
-    for(vec_sptr<ExInput>::iterator it = exins.begin();
-            it != exins.end(); it++) {
-        agent->AddEye(*it);
+        agent->AddMind(mind);
+
+        // Electrode Group in slot 0 should always be the mouth.
+        // Add the mind's electrodes in eg to agent as mouth.
+        // Hacky code.
+        sptr<ElectrodeGroup> eg = mind->GetElectrodeGroup(0);
+        for(vec_sptr<Electrode>::iterator it = eg->electrodes.begin();
+                it != eg->electrodes.end(); it++) {
+            agent->AddMouth(*it);
+        }
+
+        vec_sptr<ExInput> & exins = mind->GetInputs();
+        for(vec_sptr<ExInput>::iterator it = exins.begin();
+                it != exins.end(); it++) {
+            agent->AddEye(*it);
+        }
+
+        return true;
     }
-
 }
 
 void Sim::RunSimulation(sptr<Comms> comms) {

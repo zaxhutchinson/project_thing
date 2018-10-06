@@ -19,3 +19,9 @@ void Dopamine::AddStrength(DAStrength strength) {
     this->strength.high += strength.high;
     this->strength.low += strength.low;
 }
+void Dopamine::AddStrengthHigh(double h) {
+    this->strength.high += h;
+}
+void Dopamine::AddStrengthLow(double l) {
+    this->strength.low += l;
+}

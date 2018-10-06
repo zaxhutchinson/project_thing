@@ -54,6 +54,8 @@ void Agent::GiveFeedback(sptr<Thing> feedback) {
         else das.low = (-feedback->GetDetail(i));
         mouths[i]->GiveFeedback(das);
     }
+
+    mind->RunFeedback();
 }
 // void Agent::EndFeedback(int input_channel) {
 //     mind->PurgeDopamine(input_channel);

@@ -240,6 +240,12 @@ sptr<Dopamine> Connection::GetDopamine() {
 void Connection::SetDopamineStrength(DAStrength strength) {
     dopamine->SetStrength(strength);
 }
+void Connection::SetDopamineStrengthHigh(double h) {
+    dopamine->AddStrengthHigh(h);
+}
+void Connection::SetDopamineStrengthLow(double l) {
+    dopamine->AddStrengthLow(l);
+}
 void Connection::SetCanLearn(bool learn) {
     this->can_learn = learn;
 }
@@ -255,38 +261,62 @@ double Connection::Learn() {
     double change_pos=0.0;
     double change_neg=0.0;
     DAStrength da_str = dopamine->GetStrength();
-    if(da_str.high > 0.0 || da_str.low > 0.0) {
-        
-        if(can_learn) {
+
+    if(can_learn) {
+        //if(da_str.high >= config::DOPAMINE_MIN) {
             change_pos = (delta_trace_positive*-da_str.high) +
-                            (delta_trace_negative*da_str.high);
+                    (delta_trace_negative*da_str.high);
+            strength+=change_pos;
+            pre.lock()->AddDopamineStrengthHigh(da_str.high);
+        //}
+       // if(da_str.low >= config::DOPAMINE_MIN) {
             change_neg = (delta_trace_positive*da_str.low) +
-                            (delta_trace_negative*-da_str.low);
-
-            strength+=(change_pos+change_neg);
-            if(strength<min_strength) strength=min_strength;
-
-        }
-
-        da_str.high = da_str.high - config::DOPAMINE_DECAY*da_str.high;
-        da_str.low = da_str.low - config::DOPAMINE_DECAY*da_str.low;
-
-
-        // Only pass on decayed dopamine if it is greater than min strength
-        pre.lock()->AddDopamineStrength(da_str);
-        // Purge dopamine
-        dopamine->SetStrength(0.0,0.0);
-
-        
+                    (delta_trace_negative*-da_str.low);
+            strength+=change_neg;
+            pre.lock()->AddDopamineStrengthLow(da_str.low);
+       // }
     }
 
+    // if(da_str.high > 0.0 || da_str.low > 0.0) {
+        
+    //     if(can_learn) {
+    //         change_pos = (delta_trace_positive*-da_str.high) +
+    //                         (delta_trace_negative*da_str.high);
+    //         change_neg = (delta_trace_positive*da_str.low) +
+    //                         (delta_trace_negative*-da_str.low);
+
+    //         strength+=(change_pos+change_neg);
+    //         // std::cout << delta_trace_positive << " " << delta_trace_positive << " " 
+    //         //         << change_pos << " " << change_neg << " " 
+    //         //         << change_pos+change_neg << std::endl;
+    //         //if(strength<min_strength) strength=min_strength;
+
+    //     }
+
+    //     //da_str.high = da_str.high - config::DOPAMINE_DECAY*da_str.high;
+    //     //da_str.low = da_str.low - config::DOPAMINE_DECAY*da_str.low;
+
+
+    //     // Only pass on decayed dopamine if it is greater than min strength
+    //     pre.lock()->AddDopamineStrength(da_str);
+        
+
+        
+    // }
+
+    dopamine->SetStrength(0.0,0.0);
+
+    
+
+    return change_pos+change_neg;
+    
+}
+
+void Connection::DecayDeltaTrace() {
     delta_trace_positive = delta_trace_positive - 
                 config::DELTA_TRACE_DECAY*delta_trace_positive;
     delta_trace_negative = delta_trace_negative -
                 config::DELTA_TRACE_DECAY*delta_trace_negative;
-
-    return change_pos+change_neg;
-    
 }
 
 double Connection::Strength() { return strength; }

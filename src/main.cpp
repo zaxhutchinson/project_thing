@@ -95,6 +95,8 @@ int main(int argc, char** argv) {
         sim = BuildSim(build);
     }
 
+    if(sim==nullptr) return 1;
+
     sptr<Session> session = nullptr;
     if(session_id!=-1) {
         session = LoadSession(session_id);
@@ -162,15 +164,20 @@ sptr<Sim> LoadSim(std::string name) {
 }
 sptr<Sim> BuildSim(int model) {
     sptr<Sim> sim = std::make_shared<Sim>();
-    sim->BuildAgent(model);
+    
+    bool rtn = sim->BuildAgent(model);
+    if(rtn) {
 
-    // Add the electrode groups to the sim itself.
-    for(int i = 0; i < sim->GetAgent()->GetMind()->GetNumberOfElectrodeGroups(); i++) {
-        sptr<ElectrodeGroup> eg = sim->GetAgent()->GetMind()->GetElectrodeGroup(i);
-        sim->AddRecordingElectrodeGroup(eg);
+        // Add the electrode groups to the sim itself.
+        for(int i = 0; i < sim->GetAgent()->GetMind()->GetNumberOfElectrodeGroups(); i++) {
+            sptr<ElectrodeGroup> eg = sim->GetAgent()->GetMind()->GetElectrodeGroup(i);
+            sim->AddRecordingElectrodeGroup(eg);
+        }
+
+        return sim;
+    } else {
+        return nullptr;
     }
-
-    return sim;
 }
 sptr<Session> LoadSession(int session_id) {
     return TestManager::Instance()->CreateSession(session_id);

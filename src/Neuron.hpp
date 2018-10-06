@@ -97,6 +97,8 @@ public:
     bool Spiked();
 
     void AddDopamineStrength(DAStrength strength);
+    void AddDopamineStrengthHigh(double h);
+    void AddDopamineStrengthLow(double l);
     void SetDopamineStrength(DAStrength strength);
     void BackProp();
 

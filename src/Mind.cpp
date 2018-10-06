@@ -113,11 +113,11 @@ void Mind::Update(int64_t time, std::mt19937_64 & rng) {
         syn_recorders[i]->Update(time);
     }
     //#pragma omp parallel for
-    double change=0.0;
+    // double change=0.0;
     for(vec_sptr<Connection>::iterator it = conns.begin();
-            it != conns.end(); it++) {
-
-        change+=(*it)->Learn();
+             it != conns.end(); it++) {
+        (*it)->DecayDeltaTrace();
+    //     change+=(*it)->Learn();
     }
     // if(change != 0.0)
     //     std::cout << "CHANGE: " << change << std::endl;
@@ -132,6 +132,27 @@ void Mind::EndLearning() {
     for(int i = 0; i < conns.size(); i++) {
         conns[i]->SetLearning(false);
     }
+}
+void Mind::RunFeedback() {
+    
+    double change=0.0;
+
+    do {
+        change=0.0;
+
+        for(int k = 0; k < all_neurons.size(); k++) {
+            all_neurons[k]->BackProp();
+        }
+
+        
+        for(vec_sptr<Connection>::iterator it = conns.begin();
+                it != conns.end(); it++) {
+
+            change+=(*it)->Learn();
+        }
+        if(change != 0.0)
+            std::cout << "CHANGE: " << change << std::endl;
+    } while(std::abs(change) >= config::DOPAMINE_MIN);
 }
 void Mind::ReleaseDopamine(int dopamine_channel, DAStrength strength) {
     sptr<Dopamine> da = GetDopamineChannel(dopamine_channel);

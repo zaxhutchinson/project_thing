@@ -34,4 +34,28 @@
         <detail>0.5</detail>
         <detail>0.25</detail>
     </thing>
+    <thing>
+        <name>thingQ1</name>
+        <detail>1.0</detail>
+        <detail>1.0</detail>
+        <detail>0.0</detail>
+        <detail>0.0</detail>
+    </thing>
+    <thing>
+        <name>thingQ2</name>
+        <detail>0.0</detail>
+        <detail>0.0</detail>
+        <detail>1.0</detail>
+        <detail>1.0</detail>
+    </thing>
+    <thing>
+        <name>thingA1</name>
+        <detail>1.0</detail>
+        <detail>0.0</detail>
+    </thing>
+    <thing>
+        <name>thingA2</name>
+        <detail>0.0</detail>
+        <detail>1.0</detail>
+    </thing>
 </root>

@@ -83,6 +83,8 @@ public:
     void AddDopamine(sptr<Dopamine> da);
     sptr<Dopamine> GetDopamine();
     void SetDopamineStrength(DAStrength strength);
+    void SetDopamineStrengthHigh(double h);
+    void SetDopamineStrengthLow(double l);
 
     void SetCanLearn(bool learn);
     void SetLearning(bool learn);
@@ -94,6 +96,8 @@ public:
     double MediumPotentiation();
     double SlowPotentiation();
     double TotalPotentiation();
+
+    void DecayDeltaTrace();
 
     void AddToPostActivityHistory(int amt);
     double AvgPostActivity();

@@ -26,6 +26,8 @@ public:
     void SetStrength(double high, double low);
     DAStrength GetStrength();
     void AddStrength(DAStrength strength);
+    void AddStrengthHigh(double h);
+    void AddStrengthLow(double l);
 
     template<class Archive>
     void save(Archive & ar) const {
